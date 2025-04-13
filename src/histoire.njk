@@ -1,49 +1,55 @@
 ---
 pagination:
-  data: histoires.ile_mystere
+  # Utilise notre nouvelle collection qui contient TOUTES les étapes
+  data: collections.allStorySteps
   size: 1
-  alias: etape
-permalink: "/histoires/ile-mystere/{{ etape.id }}/index.html"
-# On dit à cette page d'utiliser le layout 'base.njk'
+  # On appelle maintenant la variable pour l'étape actuelle "step" (au lieu de "etape")
+  alias: step
+# Le permalien est maintenant construit dynamiquement avec l'ID de l'histoire et l'ID de l'étape
+permalink: "/histoires/{{ step.storyId }}/{{ step.id }}/index.html"
+# On utilise le layout de base
 layout: base.njk
-# On définit le titre pour ce layout, spécifique à l'étape
-title: L'île aux Mystères - {{ etape.id }}
+# Le titre de la page utilise le titre de l'histoire (ajouté dans la collection) et l'ID de l'étape
+title: "{{ step.storyTitle }} - {{ step.id }}"
 ---
 
-{# Plus besoin de <html>, <head>, <body> ici ! Ils sont dans base.njk #}
-{# Le contenu ci-dessous sera inséré dans le {{ content | safe }} du layout #}
-
-<h1>L'île aux Mystères</h1>
+{# Titre principal de la page - on utilise aussi le titre de l'histoire #}
+<h1>{{ step.storyTitle }}</h1>
 
 <div class="etape-contenu">
-    <p>{{ etape.text }}</p>
+    {# On utilise maintenant step.text au lieu de etape.text #}
+    <p>{{ step.text }}</p>
 
-    {# Ici, plus tard, on ajoutera l'image si elle existe #}
-     {% if etape.image %}
-     <img src="/images/{{ etape.image }}" alt="Illustration pour l'étape {{ etape.id }}">
-     {% endif %}
+    {# On utilise step.image et step.id #}
+    {% if step.image %}
+      {# Le chemin de l'image est toujours /images/ mais le nom vient de step.image #}
+      <img src="/images/{{ step.image }}" alt="Illustration pour {{ step.storyTitle }} - {{ step.id }}">
+    {% endif %}
 
-    {% if etape.choices %}
+    {# On vérifie step.choices #}
+    {% if step.choices %}
         <nav class="choix">
             <ul>
-                {% for choix in etape.choices %}
+                {# On boucle sur step.choices #}
+                {% for choix in step.choices %}
                     <li>
-                        <a href="/histoires/ile-mystere/{{ choix.target }}/">{{ choix.text }}</a>
+                        {# Le lien pointe vers la bonne histoire (step.storyId) et la cible du choix (choix.target) #}
+                        <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/">{{ choix.text }}</a>
                     </li>
                 {% endfor %}
             </ul>
         </nav>
     {% endif %}
 
-    {% if etape.ending %}
+    {# On vérifie step.ending #}
+    {% if step.ending %}
         <div class="fin">
-            <p><strong>{{ etape.ending.type }} {{ etape.ending.icon }}</strong></p>
-            <p>{{ etape.ending.message }}</p>
-            {# On garde le lien vers l'accueil, qui pointe vers / (index.md) #}
+            {# On utilise step.ending... #}
+            <p><strong>{{ step.ending.type }} {{ step.ending.icon }}</strong></p>
+            <p>{{ step.ending.message }}</p>
+            {# Le lien retourne toujours à l'accueil général #}
             <p><a href="/">Retourner à l'accueil</a></p>
         </div>
     {% endif %}
 
 </div>
-
-{# Plus besoin de </body>, </html> ici ! #}

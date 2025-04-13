@@ -1,9 +1,16 @@
 [
-    {
-      "id": "ile-mystere",
-      "title": "L'île aux Mystères",
-      "description": "Échoué sur une île inconnue après une tempête, deux chemins s'offrent à vous. Quelle voie choisirez-vous pour percer les secrets de ce lieu ?",
-      "coverImage": "ile-mystere-cover.jpg",
-      "startStepId": "start"
-    }
-  ]
+  {
+    "id": "ile-mystere",
+    "title": "L'île aux Mystères",
+    "description": "Échoué sur une île inconnue après une tempête, deux chemins s'offrent à vous. Quelle voie choisirez-vous pour percer les secrets de ce lieu ?",
+    "coverImage": "ile-mystere-cover.jpg",
+    "startStepId": "start"
+  },
+  {
+    "id": "foret-perdue",
+    "title": "La Forêt Perdue",
+    "description": "Oserez-vous pénétrer dans cette forêt ancienne où la lumière et l'ombre se côtoient ?",
+    "coverImage": "foret-perdue-cover.jpg",
+    "startStepId": "debut_foret"
+  }
+]
