@@ -1,0 +1,53 @@
+[
+    {
+      "id": "start",
+      "text": "Tu t’es échoué sur une île inconnue après une tempête. La plage est silencieuse… mais tu aperçois deux chemins.",
+      "image": "plage_debut.jpg",
+      "choices": [
+        { "text": "Suivre le sentier qui monte vers la jungle ?", "target": "jungle_path" },
+        { "text": "Explorer la grotte au pied de la falaise ?", "target": "cave_path" }
+      ]
+    },
+    {
+      "id": "jungle_path",
+      "text": "Le sentier grimpe rapidement. Tu entends un bruissement dans les buissons… Que fais-tu ?",
+      "image": "sentier_jungle.jpg",
+      "choices": [
+        { "text": "Tu t’approches discrètement pour regarder ?", "target": "monkey_success" },
+        { "text": "Tu t’éloignes en courant ?", "target": "ravine_fail" }
+      ]
+    },
+    {
+      "id": "cave_path",
+      "text": "La grotte est sombre et humide. Tu aperçois une lumière au fond… Que fais-tu ?",
+      "image": "entree_grotte.jpg",
+      "choices": [
+        { "text": "Tu t’avances vers la lumière ?", "target": "symbol_room" },
+        { "text": "Tu fais demi-tour ?", "target": "beach_return" }
+      ]
+    },
+    {
+      "id": "monkey_success",
+      "text": "C’est un singe qui te tend une noix de coco. Il semble amical.",
+      "image": "singe_ami.jpg",
+      "ending": { "type": "Réussie", "icon": "🎉", "message": "Tu as trouvé un allié sur l’île !" }
+    },
+    {
+      "id": "ravine_fail",
+      "text": "Tu fuis en courant… mais tu glisses dans un ravin !",
+      "image": "ravin.jpg",
+      "ending": { "type": "Échec", "icon": "💥", "message": "Aïe ! Tu es blessé et seul…" }
+    },
+    {
+      "id": "symbol_room",
+      "text": "Tu découvres une salle remplie de symboles gravés dans la pierre… un mystère à résoudre !",
+      "image": "salle_symboles.jpg",
+      "ending": { "type": "À suivre", "icon": "🌀", "message": "Tu as trouvé la première énigme de l’île…" }
+    },
+    {
+      "id": "beach_return",
+      "text": "Tu retournes sur la plage. Rien ne se passe.",
+      "image": "plage_retour.jpg",
+      "ending": { "type": "Neutre", "icon": "😐", "message": "Peut-être qu’il fallait oser…" }
+    }
+  ]

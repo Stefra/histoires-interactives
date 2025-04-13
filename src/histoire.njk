@@ -1,0 +1,54 @@
+---
+pagination:
+  data: histoires.ile_mystere  # Regarde dans src/_data/histoires/ile_mystere.json
+  size: 1                     # Crée une page par élément du tableau
+  alias: etape                # Donne le nom "etape" à l'élément actuel
+permalink: "/histoires/ile-mystere/{{ etape.id }}/index.html" # Adresse de la page
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'île aux Mystères - {{ etape.id }}</title>
+    <link rel="stylesheet" href="/css/style.css"> {# On prépare pour le style plus tard #}
+</head>
+<body>
+
+    <h1>L'île aux Mystères</h1>
+
+    <div class="etape-contenu">
+        <p>{{ etape.text }}</p> {# Affiche le texte de l'étape #}
+
+        {# Ici, plus tard, on ajoutera l'image si elle existe #}
+        {# {% if etape.image %}
+        <img src="/images/{{ etape.image }}" alt="">
+        {% endif %} #}
+
+        {# Ici, on affichera les choix s'il y en a #}
+        {% if etape.choices %}
+            <nav class="choix">
+                <ul>
+                    {% for choix in etape.choices %}
+                        <li>
+                            {# Le lien pointe vers l'ID de l'étape cible ! #}
+                            <a href="/histoires/ile-mystere/{{ choix.target }}/">{{ choix.text }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
+
+        {# Ici, on affichera la fin si c'en est une #}
+        {% if etape.ending %}
+            <div class="fin">
+                <p><strong>{{ etape.ending.type }} {{ etape.ending.icon }}</strong></p>
+                <p>{{ etape.ending.message }}</p>
+                <p><a href="/">Retourner à l'accueil</a></p> {# Lien vers l'accueil (qui n'existe pas encore) #}
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
