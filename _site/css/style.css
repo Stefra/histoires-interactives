@@ -71,3 +71,13 @@ body {
   .fin a {
    color: #3e357a; /* Change la couleur du lien "Retourner à l'accueil" */
   }
+
+  /* Style pour les images dans le contenu de l'étape */
+  .etape-contenu img {
+  max-width: 100%; /* Fait que l'image ne dépasse jamais la largeur de son conteneur */
+  height: auto; /* Garde les proportions de l'image quand on ajuste la largeur */
+  display: block; /* Évite certains problèmes d'espacement sous l'image */
+  margin-top: 20px; /* Ajoute un peu d'espace au-dessus de l'image */
+  margin-bottom: 20px; /* Ajoute un peu d'espace en dessous de l'image */
+  border-radius: 4px; /* Arrondit légèrement les coins (facultatif) */
+  }
