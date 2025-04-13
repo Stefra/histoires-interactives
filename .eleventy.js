@@ -1,5 +1,8 @@
 module.exports = function(eleventyConfig) {
 
+    // Dit à Eleventy de copier le dossier 'src/css' vers '_site/css'
+    eleventyConfig.addPassthroughCopy("src/css");
+    
     // Dit à Eleventy où trouver les fichiers (templates, data, includes)
     return {
       dir: {

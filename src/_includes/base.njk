@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# On peut définir un titre par défaut ou le laisser vide pour le définir sur chaque page #}
+    <title>{{ title or "Histoire Interactive" }}</title>
+    {# C'est ICI qu'on met le lien vers le CSS, pour TOUTES les pages qui utilisent ce layout #}
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    {# La balise "content" est très importante ! #}
+    {# C'est ici qu'Eleventy insérera le contenu spécifique de chaque page #}
+    {# Le filtre "safe" est nécessaire quand le contenu vient de Markdown ou contient du HTML #}
+    <main>
+        {{ content | safe }}
+    </main>
+
+    {# On pourrait ajouter un pied de page commun ici plus tard si on veut #}
+    {# <footer> Pied de page du site </footer> #}
+
+</body>
+</html>

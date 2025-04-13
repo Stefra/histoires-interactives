@@ -1,5 +1,6 @@
 ---
-layout: null # On verra les layouts plus tard, pour l'instant pas de modèle
+layout: base.njk
+title: Accueil - Histoires Interactives
 ---
 # Bienvenue sur Histoires Interactives
 

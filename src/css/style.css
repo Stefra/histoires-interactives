@@ -1,0 +1,73 @@
+/* style.css */
+
+/* Style général pour toute la page */
+body {
+    font-family: sans-serif; /* Choisit une police simple et lisible */
+    line-height: 1.6; /* Espace un peu les lignes de texte pour que ce soit plus facile à lire */
+    background-color: #f4f4f4; /* Met un arrière-plan gris très clair */
+    color: #333; /* Met le texte principal en gris foncé */
+    margin: 0; /* Enlève les marges par défaut du navigateur */
+    padding: 20px; /* Ajoute un peu d'espace autour du contenu */
+  }
+  
+  /* Conteneur principal de l'étape de l'histoire */
+  .etape-contenu {
+    max-width: 600px; /* Limite la largeur du contenu pour que les lignes ne soient pas trop longues */
+    margin: 20px auto; /* Centre le conteneur sur la page (auto pour les marges gauche/droite) */
+    background-color: #fff; /* Met un fond blanc pour le contenu */
+    padding: 30px; /* Ajoute de l'espace à l'intérieur du conteneur */
+    border-radius: 8px; /* Arrondit un peu les coins */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ajoute une légère ombre pour le faire ressortir */
+  }
+  
+  /* Le titre principal de l'histoire */
+  h1 {
+    color: #5a4a9c; /* Une couleur un peu violette pour le titre */
+    text-align: center; /* Centre le titre */
+    margin-bottom: 30px; /* Ajoute de l'espace en dessous */
+  }
+  
+  /* La navigation avec les choix */
+  .choix ul {
+    list-style: none; /* Enlève les puces de la liste */
+    padding: 0; /* Enlève l'espacement par défaut de la liste */
+    margin: 0; /* Enlève les marges par défaut de la liste */
+  }
+  
+  .choix li {
+    margin-bottom: 15px; /* Espace les boutons de choix entre eux */
+  }
+  
+  /* Les liens (boutons) de choix */
+  .choix a {
+    display: block; /* Fait que le lien prend toute la largeur disponible */
+    background-color: #5a4a9c; /* Même violet que le titre */
+    color: #fff; /* Texte en blanc */
+    text-decoration: none; /* Enlève le soulignement des liens */
+    padding: 15px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
+    border-radius: 5px; /* Arrondit les coins du bouton */
+    text-align: center; /* Centre le texte du bouton */
+    transition: background-color 0.3s ease; /* Effet doux quand on passe la souris */
+  }
+  
+  /* Quand on passe la souris sur un bouton de choix */
+  .choix a:hover {
+    background-color: #3e357a; /* Assombrit un peu le bouton */
+  }
+  
+  /* La section de fin */
+  .fin {
+    margin-top: 30px; /* Espace la section de fin du reste */
+    padding: 20px;
+    background-color: #e9e9e9; /* Un fond gris clair différent */
+    border-left: 5px solid #5a4a9c; /* Ajoute une bordure colorée à gauche */
+    border-radius: 4px;
+  }
+  
+  .fin strong {
+    font-size: 1.1em; /* Rend le type de fin un peu plus grand */
+  }
+  
+  .fin a {
+   color: #3e357a; /* Change la couleur du lien "Retourner à l'accueil" */
+  }
