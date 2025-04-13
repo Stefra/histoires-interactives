@@ -1,0 +1,39 @@
+---
+# On utilise toujours notre layout de base
+layout: base.njk
+# Titre de la page d'accueil
+title: Bienvenue - Choisissez votre aventure !
+---
+
+{# Message de bienvenue #}
+<h1>Choisissez votre aventure !</h1>
+<p>Plongez dans des histoires interactives où vos choix façonnent votre destin.</p>
+
+{# Section pour lister les histoires disponibles #}
+<div class="story-list">
+
+    {# On boucle sur chaque histoire définie dans _data/histoires.json #}
+    {% for story in histoires %}
+        <div class="story-card">
+            {# Affiche l'image de couverture de l'histoire #}
+            {% if story.coverImage %}
+                <img class="story-image" src="/images/{{ story.coverImage }}" alt="Illustration pour {{ story.title }}">
+            {% endif %}
+
+            <div class="story-content">
+                {# Affiche le titre de l'histoire #}
+                <h2 class="story-title">{{ story.title }}</h2>
+
+                {# Affiche la description de l'histoire #}
+                {% if story.description %}
+                    <p class="story-description">{{ story.description }}</p>
+                {% endif %}
+
+                {# Crée le lien pour commencer l'histoire #}
+                {# L'URL pointe vers /histoires/ID_HISTOIRE/ID_PREMIERE_ETAPE/ #}
+                <a class="story-link" href="/histoires/{{ story.id }}/{{ story.startStepId }}/">Commencer l'aventure</a>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>

@@ -81,3 +81,75 @@ body {
   margin-bottom: 20px; /* Ajoute un peu d'espace en dessous de l'image */
   border-radius: 4px; /* Arrondit légèrement les coins (facultatif) */
   }
+
+  /* Style pour la liste des histoires sur l'accueil */
+  .story-list {
+  display: grid; /* Utilise une grille pour organiser les cartes */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Crée des colonnes flexibles */
+  gap: 30px; /* Espace entre les cartes */
+  margin-top: 40px; /* Espace après le message de bienvenue */
+  }
+
+  /* Style pour chaque carte d'histoire */
+  .story-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden; /* Cache ce qui dépasse (si l'image est un peu grande) */
+  display: flex; /* Optionnel : pour mieux organiser si besoin */
+  flex-direction: column; /* Met l'image en haut, le contenu en bas */
+  transition: transform 0.3s ease; /* Petit effet quand on survole */
+  }
+
+  .story-card:hover {
+    transform: translateY(-5px); /* Soulève légèrement la carte au survol */
+  }
+
+  /* Style pour l'image de couverture */
+  .story-image {
+  width: 100%; /* Prend toute la largeur de la carte */
+  height: 180px; /* Hauteur fixe pour l'image (ajuste selon tes goûts) */
+  object-fit: cover; /* Redimensionne l'image pour remplir l'espace sans déformer */
+  display: block; /* Évite les espaces bizarres */
+  }
+
+  /* Contenu textuel de la carte */
+  .story-content {
+  padding: 20px;
+  flex-grow: 1; /* Permet à cette partie de grandir pour remplir l'espace */
+  display: flex;
+  flex-direction: column;
+  }
+
+  /* Titre de l'histoire sur la carte */
+  .story-title {
+  font-size: 1.4em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  }
+
+  /* Description de l'histoire sur la carte */
+  .story-description {
+  font-size: 0.9em;
+  color: #555;
+  flex-grow: 1; /* Pousse le bouton vers le bas */
+  margin-bottom: 15px;
+  }
+
+  /* Bouton "Commencer l'aventure" */
+  .story-link {
+  display: inline-block; /* Pour que le padding fonctionne bien */
+  background-color: #5a4a9c; /* Même violet que les choix */
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: auto; /* Se colle en bas si l'espace le permet */
+  transition: background-color 0.3s ease;
+  }
+
+  .story-link:hover {
+  background-color: #3e357a;
+  }

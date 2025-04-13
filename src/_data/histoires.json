@@ -1,0 +1,9 @@
+[
+    {
+      "id": "ile-mystere",
+      "title": "L'île aux Mystères",
+      "description": "Échoué sur une île inconnue après une tempête, deux chemins s'offrent à vous. Quelle voie choisirez-vous pour percer les secrets de ce lieu ?",
+      "coverImage": "ile-mystere-cover.jpg",
+      "startStepId": "start"
+    }
+  ]
