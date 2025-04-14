@@ -1,3 +1,11 @@
 [
-  
-]
+    {
+      "id": "animaux-perdus",
+      "title": "🐶 La mission des animaux perdus",
+      "description": "Aide Milo le chien courageux à retrouver ses amis disparus dans la forêt mystérieuse !",
+      "coverImage": "animaux-perdus-cover.jpg",
+      "startStepId": "depart",
+      "ageCategory": "6-9 ans"
+    }
+    
+  ]

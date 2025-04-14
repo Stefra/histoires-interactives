@@ -1,1 +1,176 @@
-[]
+[
+    {
+      "id": "depart",
+      "title": "🐶 La mission des animaux perdus",
+      "text": "Tu es Milo, un petit chien curieux et courageux. Ce matin, quand tu te réveilles dans ta niche, tous tes amis animaux ont disparu ! Plus de Mia la chatte, ni de Léo le lapin… Que s’est-il passé ? Tu mets ta truffe au travail et pars explorer la forêt pour les retrouver !\n\nTu arrives au bord de la forêt. Deux chemins s’offrent à toi :",
+      "image": "depart_foret.jpg",
+      "choices": [
+        {
+          "text": "🟢 Suivre le chemin de terre",
+          "target": "scene_2a"
+        },
+        {
+          "text": "🍃 Passer par le tunnel de buissons",
+          "target": "scene_2b"
+        }
+      ]
+    },
+    {
+        "id": "scene_2a",
+        "text": "Un renard roux sourit près du chemin de terre. \"Tu cherches tes amis ? Hmm, j’ai peut-être vu un lapin filer par là…\" dit-il avec un air malicieux.",
+        "image": "renard_souriant.jpg",
+        "choices": [
+            {
+            "text": "Lui offrir un os pour qu’il t’aide",
+            "target": "renard_aide",
+            "choiceImage": "choix_os.jpg"
+            },
+         {
+            "text": "T’enfuir vite dans les buissons",
+            "target": "fuite_retour_depart",
+            "choiceImage": "choix_pattes_fuite.jpg"
+         }
+        ]
+    },
+    {
+        "id": "renard_aide",
+        "text": "Le renard prend l'os en remuant la queue. \"Merci ! Hmm, oui, le lapin est allé vers le grand chêne, près du ruisseau qui chante.\"",
+        "image": "renard_mange_os.jpg",
+        "choices": [
+            {
+                "text": "Le remercier et aller vers le chêne",
+                "target": "scene_3"
+            }
+        ]
+    },
+    {
+        "id": "fuite_retour_depart",
+        "text": "Tu te précipites dans les buissons touffus ! Après avoir couru un moment, tu te rends compte que tu tournes en rond... Tu décides de revenir sur tes pas, jusqu'au début du sentier.",
+        "image": "buissons_perdu.jpg",
+        "choices": [
+          {
+            "text": "Retourner au choix des deux chemins",
+            "target": "depart"
+          }
+        ]
+    },
+    {
+        "id": "scene_2b",
+        "text": "Tu te faufiles dans le tunnel de buissons et découvres un gros hérisson qui ronfle bruyamment sous un champignon rouge et blanc, gros comme un parapluie ! Que fais-tu ?",
+        "image": "herisson_endormi.jpg",
+        "choices": [
+          {
+            "text": "🌰 Lui donner une noisette trouvée au sol",
+            "target": "herisson_carte"
+          },
+          {
+            "text": "🌿 Le laisser dormir et continuer seul",
+            "target": "fin_boue"
+          }
+        ]
+    },
+    {
+        "id": "herisson_carte",
+        "text": "Tu tapotes doucement le hérisson. Il ouvre un œil, grogne, mais voit la noisette. Il la croque avec un grand sourire ! \"Miam ! Merci petit ! Tiens, j'ai fait cette carte, elle montre comment aller au grand ruisseau.\"",
+        "image": "herisson_carte.jpg",
+        "choices": [
+          {
+            "text": "Prendre la carte et aller au ruisseau",
+            "target": "scene_3"
+          }
+        ]
+    },
+    {
+        "id": "fin_boue",
+        "text": "Tu laisses le hérisson tranquille et t'enfonces plus loin. Mais attention ! Tu glisses et... PLOUF ! Tu tombes dans une grosse flaque de boue collante. Beurk ! Tu es trop sale pour continuer, il faut rentrer prendre un bain.",
+        "image": "chien_boueux.jpg",
+        "ending": {
+          "type": "Échec",
+          "icon": "❌",
+          "message": "Fin tout cracra ! Mission échouée pour aujourd'hui."
+        }
+    },
+    {
+        "id": "scene_3",
+        "text": "Tu arrives près d'un ruisseau qui murmure joyeusement. Pour continuer, il faut traverser sur un vieux tronc d'arbre couvert de mousse. Il a l'air un peu glissant ! Vas-tu essayer de traverser ?",
+        "image": "ruisseau_tronc.jpg",
+        "choices": [
+          {
+            "type": "dice",
+            "text": "🎲 Traverser prudemment (Équilibre : Lancer 1D6)",
+            "outcomes": [
+              {
+                "rolls": [1, 2, 3],
+                "description": "Splash !",
+                "target": "scene_4a"
+              },
+              {
+                "rolls": [4, 5, 6],
+                "description": "Bien joué !",
+                "target": "scene_4b"
+              }
+            ]
+          }
+        ]
+    },
+    {
+        "id": "scene_4a",
+        "text": "Zoups ! Tes pattes glissent sur la mousse et PLOUF ! Tu tombes dans l'eau fraîche du ruisseau. Brrr ! En sortant, tout dégoulinant, tu aperçois une petite ouverture dans la berge... et une longue oreille blanche qui dépasse ! C'est Léo le lapin !",
+        "image": "milo_mouille_leo.jpg",
+        "choices": [
+          {
+            "text": "Content de retrouver Léo !",
+            "target": "scene_finale"
+          }
+        ]
+    },
+    {
+        "id": "scene_4b",
+        "text": "Bravo ! Tu as traversé le tronc comme un champion. De l'autre côté, tu découvres une magnifique clairière baignée de lumière. Mais... horreur ! Plusieurs animaux, dont Mia la chatte, sont enfermés dans de grosses bulles brillantes qui flottent doucement. Que vas-tu faire pour les libérer ?",
+        "image": "clairiere_bulles.jpg",
+        "choices": [
+          {
+            "text": "Faire sonner une cloche en bois suspendue à un arbre",
+            "target": "fin_sauvetage_chouette",
+            "choiceImage": "choix_cloche.jpg"
+          },
+          {
+            "text": "Souffler de toutes tes forces sur les bulles",
+            "target": "fin_grenouille",
+            "choiceImage": "choix_souffle.jpg"
+          }
+        ]
+    },
+    {
+        "id": "fin_sauvetage_chouette",
+        "text": "Tu tires doucement sur la corde et la cloche en bois émet un son doux et mélodieux. Aussitôt, une grande chouette aux plumes argentées descend d'un arbre. \"Tu as choisi la sagesse, petit chien,\" dit-elle d'une voix douce. \"Je vois que tu as bon cœur.\" D'un battement d'ailes, elle fait éclater toutes les bulles !",
+        "image": "chouette_magique.jpg",
+        "choices": [
+          {
+            "text": "Merci Madame Chouette !",
+            "target": "scene_finale"
+          }
+        ]
+    },
+    {
+        "id": "fin_grenouille",
+        "text": "Tu prends une grande inspiration et PFFFFF ! Tu souffles si fort que quelques bulles éclatent, libérant un écureuil et un oiseau ! Mais une chouette fâchée descend en piqué. \"Comment oses-tu utiliser la force brute ?! Pour ta leçon, COA !\" D'un coup de baguette, elle te transforme en petite grenouille verte !",
+        "image": "milo_grenouille.jpg",
+        "ending": {
+          "type": "Neutre",
+          "icon": "🐸",
+          "message": "Coa ! Coa ! Tu sautes partout en rigolant. C'est une fin rigolote, mais tu n'as pas sauvé tout le monde. Tu redeviendras normal dans une heure !"
+        }
+    },
+    {
+        "id": "scene_finale",
+        "text": "Que tu aies retrouvé Léo près du ruisseau ou que la chouette ait libéré tout le monde, la mission est un succès ! Tu rentres à la maison avec tous tes amis retrouvés. Ils sont si heureux de te voir ! Ils organisent une grande fête avec des gâteaux aux carottes et des jeux. Mia la chatte ronronne sur tes genoux et Léo te fait un câlin.",
+        "image": "fete_animaux.jpg",
+        "ending": {
+          "type": "Réussie",
+          "icon": "🏅",
+          "message": "Bravo ! Tu es déclaré le plus courageux des chiens détectives !"
+        }
+    }
+    
+  ]
