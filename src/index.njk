@@ -9,12 +9,22 @@ title: Bienvenue - Choisissez votre aventure !
 <h1>Choisissez votre aventure !</h1>
 <p>Plongez dans des histoires interactives où vos choix façonnent votre destin.</p>
 
+{# === Filtres par Catégorie d'Âge === #}
+<div class="category-filters" role="group" aria-label="Filtrer les histoires par âge">
+    <button class="filter-button active" data-filter="all">Toutes</button>
+    <button class="filter-button" data-filter="6-9 ans">6-9 ans</button>
+    <button class="filter-button" data-filter="10-12 ans">10-12 ans</button>
+    <button class="filter-button" data-filter="Adolescent">Adolescent</button>
+    <button class="filter-button" data-filter="Jeune Adulte">Jeune Adulte</button>
+    <button class="filter-button" data-filter="Adulte">Adulte</button>
+</div>
+
 {# Section pour lister les histoires disponibles #}
 <div class="story-list">
 
     {# On boucle sur chaque histoire définie dans _data/histoires.json #}
     {% for story in histoires %}
-        <div class="story-card">
+        <div class="story-card" data-category="{{ story.ageCategory }}">
             {# Affiche l'image de couverture de l'histoire #}
             {% if story.coverImage %}
                 <img class="story-image" src="/images/{{ story.coverImage }}" alt="Illustration pour {{ story.title }}">

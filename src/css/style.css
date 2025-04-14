@@ -300,3 +300,38 @@ main > p {
     text-decoration-thickness: 1px; /* Ajuste l'épaisseur si besoin */
     text-underline-offset: 2px; /* Espace un peu le soulignement */
 }
+/* === Style pour Filtres Catégories === */
+
+.category-filters {
+  text-align: center; /* Centre les boutons */
+  margin-bottom: 30px; /* Espace avant la liste des histoires */
+}
+
+.filter-button {
+  background-color: #e9e9e9; /* Fond gris clair */
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  margin: 5px; /* Espace entre les boutons */
+  border-radius: 20px; /* Boutons arrondis */
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #ddd;
+}
+
+.filter-button.active { /* Style du bouton actif */
+  background-color: #5a4a9c; /* Violet */
+  color: #fff;
+  border-color: #5a4a9c;
+}
+
+/* Style pour les cartes masquées (si on utilisait une classe) */
+/*
+.story-card.hidden {
+    display: none;
+}
+*/

@@ -120,5 +120,39 @@ document.addEventListener('DOMContentLoaded', () => {
       warningElement.innerHTML = `<strong>Attention :</strong> Votre progression est sauvegardée uniquement sur <u>cet appareil</u> et dans <u>ce navigateur</u>. Changer d'appareil ou effacer les données de navigation entraînera la perte de vos sauvegardes.`;
       storyListContainer.insertAdjacentElement('afterend', warningElement);
   }
+  // --- Filtrage par Catégorie d'Âge sur l'Accueil ---
+
+const filterContainer = document.querySelector('.category-filters');
+const storyCards = document.querySelectorAll('.story-list .story-card'); // Sélectionne toutes les cartes
+
+// Vérifie si les éléments nécessaires existent (on est sur la bonne page)
+if (filterContainer && storyCards.length > 0) {
+    const filterButtons = filterContainer.querySelectorAll('.filter-button');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filterValue = button.dataset.filter; // Récupère la valeur du data-filter (ex: "all", "6-9 ans")
+
+            // Gère l'état actif des boutons
+            filterButtons.forEach(btn => btn.classList.remove('active')); // Enlève 'active' de tous
+            button.classList.add('active'); // Ajoute 'active' au bouton cliqué
+
+            // Filtre les cartes d'histoires
+            storyCards.forEach(card => {
+                const cardCategory = card.dataset.category; // Récupère la catégorie de la carte
+
+                // Si le filtre est "all" OU si la catégorie de la carte correspond au filtre
+                if (filterValue === 'all' || cardCategory === filterValue) {
+                    card.style.display = ''; // Affiche la carte (enlève le display:none)
+                    // Ou si tu préfères utiliser une classe : card.classList.remove('hidden');
+                } else {
+                    card.style.display = 'none'; // Masque la carte
+                    // Ou : card.classList.add('hidden');
+                }
+            });
+        });
+    });
+}
+// --- Fin Filtrage par Catégorie ---
 
 }); // Fin de l'écouteur DOMContentLoaded
