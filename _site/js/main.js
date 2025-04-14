@@ -1,44 +1,78 @@
 // Attend que toute la page HTML soit chargée
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Gestion du Lancer de Dé ---
+    // --- Gestion du Lancer de Dé (Version Améliorée) ---
     const diceButtons = document.querySelectorAll('.dice-roll-button');
     const diceResultArea = document.getElementById('dice-result-area');
     if (diceResultArea) {
         diceButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', () => { // Début event listener bouton dé
+
                 button.disabled = true;
                 const storyId = button.dataset.storyId;
-                const successRoll = parseInt(button.dataset.successRoll, 10);
-                const successTarget = button.dataset.successTarget;
-                const failureTarget = button.dataset.failureTarget;
+                const outcomesString = button.dataset.outcomes;
 
-                if (!storyId || isNaN(successRoll) || !successTarget || !failureTarget) {
-                    diceResultArea.textContent = "Erreur : Configuration du bouton incorrecte.";
-                    console.error("Attributs data-* manquants ou invalides sur le bouton de dé :", button.dataset);
+                if (!storyId || !outcomesString) {
+                    diceResultArea.textContent = "Erreur : Configuration du bouton (storyId ou outcomes) manquante.";
+                    console.error("Attributs data-story-id ou data-outcomes manquants:", button.dataset);
                     return;
                 }
+
+                let outcomes;
+                try {
+                    outcomes = JSON.parse(outcomesString);
+                } catch (e) {
+                    diceResultArea.textContent = "Erreur : Impossible de lire les résultats possibles (JSON invalide).";
+                    console.error("Erreur parsing JSON pour outcomes:", outcomesString, e);
+                    return;
+                }
+
+                if (!Array.isArray(outcomes) || outcomes.length === 0) {
+                    diceResultArea.textContent = "Erreur : Aucun résultat possible défini pour ce lancer.";
+                    console.error("La structure 'outcomes' est vide ou n'est pas un tableau:", outcomes);
+                    return;
+                }
+
                 diceResultArea.innerHTML = "Lancement du dé... <span class='dice-animation'>🎲</span>";
-                setTimeout(() => {
+
+                setTimeout(() => { // Délai avant lancer
                     const roll = Math.floor(Math.random() * 6) + 1;
-                    let targetStepId;
-                    let resultMessage;
-                    if (roll >= successRoll) {
-                        targetStepId = successTarget;
-                        resultMessage = `Résultat : <span class="dice-result roll-${roll}"></span> ${roll} (Réussite !)`;
+                    let targetStepId = null;
+                    let resultDescription = "";
+
+                    const matchingOutcome = outcomes.find(outcome =>
+                        Array.isArray(outcome.rolls) && outcome.rolls.includes(roll)
+                    );
+
+                    if (matchingOutcome) {
+                        targetStepId = matchingOutcome.target;
+                        resultDescription = matchingOutcome.description || "";
+                        if (!targetStepId) {
+                             diceResultArea.textContent = `Erreur : Résultat ${roll} (${resultDescription}) trouvé, mais pas de cible définie.`;
+                             console.error("Aucune 'target' définie pour l'outcome correspondant au jet:", roll, matchingOutcome);
+                             return;
+                        }
                     } else {
-                        targetStepId = failureTarget;
-                        resultMessage = `Résultat : <span class="dice-result roll-${roll}"></span> ${roll} (Échec)`;
+                        diceResultArea.textContent = `Erreur : Aucun résultat défini pour le jet ${roll} ! Vérifiez la configuration.`;
+                        console.error("Aucun outcome trouvé pour le jet:", roll, "dans outcomes:", outcomes);
+                        return;
+                    }
+
+                    let resultMessage = `Résultat : <span class="dice-result roll-${roll}"></span> ${roll}`;
+                    if (resultDescription) {
+                        resultMessage += ` (${resultDescription})`;
                     }
                     diceResultArea.innerHTML = resultMessage;
-                    setTimeout(() => {
+
+                    setTimeout(() => { // Délai avant redirection
                         const nextPageUrl = `/histoires/${storyId}/${targetStepId}/`;
                         window.location.href = nextPageUrl;
-                    }, 1800);
-                }, 1000);
-            });
-        });
-    }
+                    }, 1800); // Fin délai redirection
+
+                }, 1000); // Fin délai avant lancer
+            }); // Fin event listener bouton dé
+        }); // Fin forEach bouton dé
+    } // Fin if (diceResultArea)
 
     // --- Sauvegarde de Progression (Version 3: avec statut Neutre) ---
     const storyContainer = document.querySelector('.etape-contenu');
@@ -48,19 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentStoryId = pathParts[1];
             const currentStepId = pathParts[2];
             const storageKey = `storyData_${currentStoryId}`;
-            let currentStatus = 'in_progress'; // Statut par défaut
+            let currentStatus = 'in_progress';
             const endingDiv = document.querySelector('.fin');
             if (endingDiv) {
                 const endingType = endingDiv.dataset.endingType;
-                // Détermine le statut en fonction du type de fin
                 if (endingType === 'Réussie' || endingType === 'À suivre') {
                     currentStatus = 'completed';
                 } else if (endingType === 'Échec') {
                     currentStatus = 'lost';
-                } else if (endingType === 'Neutre') { // <-- Condition ajoutée pour Neutre
-                    currentStatus = 'finished_neutral'; // Nouveau statut
+                } else if (endingType === 'Neutre') {
+                    currentStatus = 'finished_neutral';
                 }
-                // Si le type n'est aucun de ceux-là, currentStatus reste 'in_progress'
             }
             const dataToStore = { lastStep: currentStepId, status: currentStatus };
             try {
@@ -72,16 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Vérification Progression sur l'Accueil (Version 3: avec statut Neutre) ---
+    // --- Logique pour la Page d'Accueil (Mise à jour Statut/Bouton ET Filtres) ---
     const storyListContainer = document.querySelector('.story-list');
-    // On définit storyCards ici pour qu'il soit accessible par les deux parties (statut et filtre)
-    let storyCards = [];
+    const filterContainer = document.querySelector('.category-filters');
+    let storyCards = []; // Défini en dehors pour être accessible par les deux parties
     if (storyListContainer) {
       storyCards = storyListContainer.querySelectorAll('.story-card');
     }
 
-
-    // 1. Mise à jour du statut et des boutons (si on est sur l'accueil et qu'il y a des cartes)
+    // 1. Mise à jour du statut et des boutons
     if (storyListContainer && storyCards.length > 0) {
         storyCards.forEach(card => {
             const storyId = card.dataset.storyId;
@@ -89,67 +120,43 @@ document.addEventListener('DOMContentLoaded', () => {
             const statusDisplay = card.querySelector('.story-status');
             const startStepId = card.dataset.startStep;
 
-            if (!storyId || !storyLink || !statusDisplay || !startStepId) {
-                console.warn("Carte d'histoire incomplète :", card);
-                return;
-            }
+            if (!storyId || !storyLink || !statusDisplay || !startStepId) { return; } // Simplifié
+
             const storageKey = `storyData_${storyId}`;
             try {
                 const storedDataString = localStorage.getItem(storageKey);
-                let lastStep = null;
-                let status = null;
+                let lastStep = null; let status = null;
                 if (storedDataString) {
-                    try {
-                        const storedData = JSON.parse(storedDataString);
-                        lastStep = storedData.lastStep;
-                        status = storedData.status;
-                    } catch (parseError) { console.error(`Erreur parsing JSON pour ${storyId}:`, parseError); }
+                    try { const storedData = JSON.parse(storedDataString); lastStep = storedData.lastStep; status = storedData.status; }
+                    catch (parseError) { console.error(`Erreur parsing JSON pour ${storyId}:`, parseError); }
                 }
 
-                // Mise à jour affichage statut
-                statusDisplay.textContent = ''; // Vide d'abord
-                statusDisplay.className = 'story-status'; // Reset classes
-                if (status === 'completed') {
-                    statusDisplay.textContent = 'Terminé 🎉';
-                    statusDisplay.classList.add('status-completed');
-                } else if (status === 'lost') {
-                    statusDisplay.textContent = 'Perdu 💥';
-                    statusDisplay.classList.add('status-lost');
-                } else if (status === 'finished_neutral') { // <-- Condition ajoutée
-                    statusDisplay.textContent = 'Fin 😐'; // Affichage pour Neutre
-                    statusDisplay.classList.add('status-neutral'); // Classe CSS pour Neutre
-                }
+                statusDisplay.textContent = ''; statusDisplay.className = 'story-status';
+                if (status === 'completed') { statusDisplay.textContent = 'Terminé 🎉'; statusDisplay.classList.add('status-completed'); }
+                else if (status === 'lost') { statusDisplay.textContent = 'Perdu 💥'; statusDisplay.classList.add('status-lost'); }
+                else if (status === 'finished_neutral') { statusDisplay.textContent = 'Fin 😐'; statusDisplay.classList.add('status-neutral'); }
 
-                // Mise à jour bouton : Recommencer pour TOUS les statuts de fin
-                if (status === 'completed' || status === 'lost' || status === 'finished_neutral') { // <-- Condition ajoutée
-                    storyLink.textContent = 'Recommencer';
-                    storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`);
-                    storyLink.classList.remove('resume-link'); // Enlève le style vert si besoin
-                } else if (lastStep && lastStep !== startStepId) { // Cas "Reprendre"
-                    storyLink.textContent = 'Reprendre l\'aventure';
-                    storyLink.setAttribute('href', `/histoires/${storyId}/${lastStep}/`);
-                    storyLink.classList.add('resume-link');
-                } else { // Cas "Commencer" par défaut
-                    storyLink.textContent = 'Commencer l\'aventure';
-                    storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`);
-                    storyLink.classList.remove('resume-link');
+                if (status === 'completed' || status === 'lost' || status === 'finished_neutral') {
+                    storyLink.textContent = 'Recommencer'; storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`); storyLink.classList.remove('resume-link');
+                } else if (lastStep && lastStep !== startStepId) {
+                    storyLink.textContent = 'Reprendre l\'aventure'; storyLink.setAttribute('href', `/histoires/${storyId}/${lastStep}/`); storyLink.classList.add('resume-link');
+                } else {
+                    storyLink.textContent = 'Commencer l\'aventure'; storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`); storyLink.classList.remove('resume-link');
                 }
             } catch (e) { console.error("Erreur lors de la lecture/mise à jour de la progression:", e); }
         });
 
-        // 2. Ajout de l'avertissement Local Storage (s'il n'est pas déjà là)
+        // 2. Ajout de l'avertissement Local Storage
         const warningElement = document.querySelector('.local-storage-warning');
         if (!warningElement) {
             const newWarning = document.createElement('p');
             newWarning.classList.add('local-storage-warning');
-            newWarning.innerHTML = `<strong>Attention :</strong> Votre progression est sauvegardée uniquement sur <u>cet appareil</u> et dans <u>ce navigateur</u>. Changer d'appareil ou effacer les données de navigation entraînera la perte de vos sauvegardes.`;
+            newWarning.innerHTML = `<strong>Attention :</strong> Votre progression est sauvegardée uniquement sur <u>cet appareil</u> et dans <u>ce navigateur</u>...`;
             storyListContainer.insertAdjacentElement('afterend', newWarning);
         }
-    } // Fin if (storyListContainer)
+    }
 
-    // --- Filtrage par Catégorie d'Âge sur l'Accueil ---
-    const filterContainer = document.querySelector('.category-filters');
-    // On utilise les storyCards déjà récupérées si elles existent
+    // 3. Mise en place des Filtres de Catégorie
     if (filterContainer && storyCards.length > 0) {
         const filterButtons = filterContainer.querySelectorAll('.filter-button');
         filterButtons.forEach(button => {
@@ -157,17 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filterValue = button.dataset.filter;
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                // On utilise la variable storyCards définie plus haut
-                storyCards.forEach(card => {
+                storyCards.forEach(card => { // Utilise storyCards défini plus haut
                     const cardCategory = card.dataset.category;
-                    if (filterValue === 'all' || cardCategory === filterValue) {
-                        card.style.display = '';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    if (filterValue === 'all' || cardCategory === filterValue) { card.style.display = ''; }
+                    else { card.style.display = 'none'; }
                 });
             });
         });
-    } // Fin if (filterContainer && storyCards.length > 0)
+    }
 
 }); // Fin de l'écouteur DOMContentLoaded

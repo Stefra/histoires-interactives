@@ -23,16 +23,30 @@
       "choices": [
         {
           "type": "dice",
-          "text": "Tenter l'approche (Discrétion : réussite si Dé >= 4)",
-          "successRollMinimum": 4,
-          "successTarget": "monkey_success",
-          "failureTarget": "approche_ratee"
+          "text": "Tenter une approche discrète (Lancer 1D6)",
+          "outcomes": [
+        {
+          "rolls": [1, 2],
+          "description": "Échec. Trop bruyant !",
+          "target": "approche_ratee"
         },
         {
-          "text": "Ignorer le bruit et continuer le sentier.",
-          "target": "approche_ratee"
+          "rolls": [3, 4],
+          "description": "Approche moyenne...",
+          "target": "approche_moyenne"
+        },
+        {
+          "rolls": [5, 6],
+          "description": "Réussite !",
+          "target": "monkey_success"
         }
       ]
+      },
+      {
+        "text": "Ignorer le bruit et continuer le sentier.",
+        "target": "start"
+      }
+    ]
     },
     {
       "id": "cave_path",
@@ -72,5 +86,14 @@
       "text": "Trop de bruit ! Tu fais craquer une brindille. La créature dans les buissons, alertée, s'enfuit à toute vitesse avant que tu puisses voir ce que c'était.",
       "image": "buissons_vides.jpg",
       "ending": { "type": "Échec", "icon": "🤷", "message": "L'occasion est manquée. Que faire maintenant ?" }
+    },
+    {
+      "id": "approche_moyenne",
+      "text": "Tu avances prudemment, mais pas assez... Tu aperçois une forme qui détale dans les fourrés avant d'avoir pu bien la voir. Tu ne sais pas si c'était amical ou dangereux.",
+      "image": "fourres_remues.jpg",
+      "choices": [
+        {"text": "Examiner les traces ?", "target": "traces_examinees"},
+        {"text": "Hausser les épaules et continuer ?", "target": "start"}
+      ]
     }
   ]

@@ -1,70 +1,64 @@
 ---
 pagination:
-  # Utilise notre nouvelle collection qui contient TOUTES les étapes
   data: collections.allStorySteps
   size: 1
-  # On appelle maintenant la variable pour l'étape actuelle "step" (au lieu de "etape")
   alias: step
-# Le permalien est maintenant construit dynamiquement avec l'ID de l'histoire et l'ID de l'étape
 permalink: "/histoires/{{ step.storyId }}/{{ step.id }}/index.html"
-# On utilise le layout de base
 layout: base.njk
-# Le titre de la page utilise le titre de l'histoire (ajouté dans la collection) et l'ID de l'étape
 eleventyComputed:
-  title: "{{ step.storyTitle | safe }} - {{ step.id }}"
+  title: "{{ step.storyTitle | safe }} - {{ step.id }}" # Utilise safe pour le titre venant du JSON
 ---
 
-{# Titre principal de la page - on utilise aussi le titre de l'histoire #}
+{# Titre principal de la page - utilise aussi le titre de l'histoire #}
 <h1>{{ step.storyTitle }}</h1>
 
 <div class="etape-contenu">
-    {# On utilise maintenant step.text au lieu de etape.text #}
+    {# Affiche le texte de l'étape #}
     <p>{{ step.text }}</p>
 
-    {# On utilise step.image et step.id #}
+    {# Affiche l'image de l'étape si elle existe #}
     {% if step.image %}
-      {# Le chemin de l'image est toujours /images/ mais le nom vient de step.image #}
       <img src="/images/{{ step.image }}" alt="Illustration pour {{ step.storyTitle }} - {{ step.id }}">
     {% endif %}
 
-    {# On vérifie step.choices #}
+    {# Zone pour afficher le résultat du dé (toujours présente mais vide si pas de dé) #}
+    <div id="dice-result-area"></div>
+
+    {# Affiche les choix s'il y en a #}
     {% if step.choices %}
-        <div id="dice-result-area"></div> {# Zone pour afficher le résultat du dé #}
-            <nav class="choix">
-                <ul>
-                    {% for choix in step.choices %}
-                        <li>
-                            {# === Vérifie si c'est un choix avec image === #}
-                            {% if choix.choiceImage %}
-                                <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="image-choice-link" title="{{ choix.text }}"> {# Le lien englobe l'image, title utilise le texte #}
-                                    <img src="/images/{{ choix.choiceImage }}" alt="{{ choix.text }}" class="choice-image">
-                                    {# Optionnel: Afficher le texte sous l'image si souhaité #}
-                                    {# <span class="image-choice-text">{{ choix.text }}</span> #}
-                                </a>
+        <nav class="choix">
+            <ul>
+                {% for choix in step.choices %}
+                    <li>
+                        {# === Vérifie si c'est un choix avec image === #}
+                        {% if choix.choiceImage %}
+                            <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="image-choice-link" title="{{ choix.text }}">
+                                <img src="/images/{{ choix.choiceImage }}" alt="{{ choix.text }}" class="choice-image">
+                                {# <span class="image-choice-text">{{ choix.text }}</span> #}
+                            </a>
 
-                            {# === Sinon, vérifie si c'est un lancer de dé === #}
-                            {% elif choix.type == "dice" %}
-                                <button class="dice-roll-button"
+                        {# === Sinon, vérifie si c'est un lancer de dé (avec la nouvelle structure) === #}
+                        {% elif choix.type == "dice" %}
+                            <button class="dice-roll-button"
                                     data-story-id="{{ step.storyId }}"
-                                    data-success-roll="{{ choix.successRollMinimum }}"
-                                    data-success-target="{{ choix.successTarget }}"
-                                    data-failure-target="{{ choix.failureTarget }}">
-                                    {{ choix.text }}
-                                </button>
+                                    data-outcomes='{{ choix.outcomes | dump | safe }}'> {# Stocke outcomes en JSON #}
+                                {{ choix.text }}
+                            </button>
 
-                            {# === Sinon, c'est un choix texte normal === #}
-                            {% else %}
-                                <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="text-choice-link">{{ choix.text }}</a>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
+                        {# === Sinon, c'est un choix texte normal === #}
+                        {% else %}
+                            <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="text-choice-link">{{ choix.text }}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
     {% endif %}
 
-    {# On vérifie step.ending #}
+    {# Affiche la fin si c'en est une #}
     {% if step.ending %}
-        <div class="fin" data-ending-type="{{ step.ending.type }}"> {# <-- AJOUTÉ data-ending-type #}
+        {# Ajout de data-ending-type pour le JS #}
+        <div class="fin" data-ending-type="{{ step.ending.type }}">
             <p><strong>{{ step.ending.type }} {{ step.ending.icon }}</strong></p>
             <p>{{ step.ending.message }}</p>
             <p><a href="/">Retourner à l'accueil</a></p>

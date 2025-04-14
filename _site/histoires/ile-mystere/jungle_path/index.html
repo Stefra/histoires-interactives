@@ -24,40 +24,39 @@
 
     
     
-      
       <img src="/images/sentier_jungle.jpg" alt="Illustration pour L&#39;île aux Mystères - jungle_path">
     
 
     
-    
-        <div id="dice-result-area"></div> 
-            <nav class="choix">
-                <ul>
-                    
-                        <li>
-                            
-                            
-                                <button class="dice-roll-button"
-                                    data-story-id="ile-mystere"
-                                    data-success-roll="4"
-                                    data-success-target="monkey_success"
-                                    data-failure-target="approche_ratee">
-                                    Tenter l&#39;approche (Discrétion : réussite si Dé &gt;= 4)
-                                </button>
+    <div id="dice-result-area"></div>
 
-                            
-                            
-                        </li>
-                    
-                        <li>
-                            
-                            
-                                <a href="/histoires/ile-mystere/approche_ratee/" class="text-choice-link">Ignorer le bruit et continuer le sentier.</a>
-                            
-                        </li>
-                    
-                </ul>
-            </nav>
+    
+    
+        <nav class="choix">
+            <ul>
+                
+                    <li>
+                        
+                        
+                            <button class="dice-roll-button"
+                                    data-story-id="ile-mystere"
+                                    data-outcomes='[{"rolls":[1,2],"description":"Échec. Trop bruyant !","target":"approche_ratee"},{"rolls":[3,4],"description":"Approche moyenne...","target":"approche_moyenne"},{"rolls":[5,6],"description":"Réussite !","target":"monkey_success"}]'> 
+                                Tenter une approche discrète (Lancer 1D6)
+                            </button>
+
+                        
+                        
+                    </li>
+                
+                    <li>
+                        
+                        
+                            <a href="/histoires/ile-mystere/start/" class="text-choice-link">Ignorer le bruit et continuer le sentier.</a>
+                        
+                    </li>
+                
+            </ul>
+        </nav>
     
 
     
