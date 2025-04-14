@@ -10,16 +10,15 @@ body {
   padding: 20px;
 }
 
-main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
-    max-width: 800px; /* Un peu plus large pour l'accueil */
-    margin: 0 auto; /* Centre le contenu principal */
+main {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* === Style Page d'Histoire === */
 
-/* Conteneur du contenu de l'étape */
 .etape-contenu {
-  max-width: 600px; /* Largeur spécifique pour les étapes d'histoire */
+  max-width: 600px;
   margin: 20px auto;
   background-color: #fff;
   padding: 30px;
@@ -27,15 +26,13 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Titre principal de l'histoire (dans l'étape) */
-.etape-contenu h1 { /* Cible H1 dans .etape-contenu */
+.etape-contenu h1 {
   color: #5a4a9c;
   text-align: center;
-  margin-top: 0; /* Enlève marge sup si c'est le premier élément */
+  margin-top: 0;
   margin-bottom: 30px;
 }
 
-/* Style pour les images dans le contenu de l'étape */
 .etape-contenu img {
   max-width: 100%;
   height: auto;
@@ -45,7 +42,6 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
   border-radius: 4px;
 }
 
-/* La section de fin */
 .fin {
   margin-top: 30px;
   padding: 20px;
@@ -64,32 +60,30 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
 
 /* === Style pour les Choix (dans une histoire) === */
 
-/* La navigation avec les choix */
-.choix ul { /* Cible la liste <ul> DANS l'élément avec la classe 'choix' */
+.choix ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex; /* Met les éléments en ligne */
-  flex-wrap: wrap; /* Permet le retour à la ligne si pas assez de place */
-  justify-content: center; /* Centre les choix horizontalement */
-  gap: 25px; /* Espace entre les différents choix */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
 }
 
 .choix li {
-   margin-bottom: 0; /* Le gap gère l'espacement vertical si wrap */
+   margin-bottom: 0;
 }
 
-/* Liens texte normaux */
 .text-choice-link {
-  display: block; /* Assure un affichage correct */
-  background-color: #5a4a9c; /* Violet */
+  display: block;
+  background-color: #5a4a9c;
   color: #fff;
   text-decoration: none;
   padding: 15px 20px;
   border-radius: 5px;
   text-align: center;
   transition: background-color 0.3s ease;
-  flex-shrink: 0; /* Empêche de trop rétrécir si manque de place */
+  flex-shrink: 0;
 }
 
 .text-choice-link:hover {
@@ -98,16 +92,15 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
 
 /* === Style pour les Choix par Image === */
 
-/* Style du lien qui entoure l'image de choix */
 .image-choice-link {
   display: block;
   border: 3px solid transparent;
   border-radius: 8px;
   overflow: hidden;
   transition: border-color 0.3s ease, transform 0.2s ease;
-  width: 200px; /* Largeur fixe (ajuster si besoin) */
+  width: 200px;
   background-color: #f0f0f0;
-  flex-shrink: 0; /* Empêche de trop rétrécir */
+  flex-shrink: 0;
 }
 
 .image-choice-link:hover {
@@ -115,15 +108,13 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
   transform: scale(1.05);
 }
 
-/* Style de l'image de choix elle-même */
 .choice-image {
   display: block;
   width: 100%;
-  height: 150px; /* Hauteur fixe (ajuster si besoin) */
+  height: 150px;
   object-fit: cover;
 }
 
-/* Style pour le texte sous l'image (si on l'active plus tard) */
 /*
 .image-choice-text {
   display: block;
@@ -136,7 +127,6 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
 
 /* === Style pour le Lancer de Dé === */
 
-/* Zone pour afficher le résultat du dé */
 #dice-result-area {
   min-height: 2.5em;
   margin-top: 15px;
@@ -150,23 +140,22 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
   align-items: center;
 }
 
-/* Style pour le bouton de lancer de dé */
 .dice-roll-button {
   display: block;
-  width: 100%;
+  width: 100%; /* Prend la largeur de son conteneur li qui est dans le flex */
   padding: 15px 20px;
   margin: 0; /* Le gap du ul gère l'espacement */
   font-family: inherit;
   font-size: 1em;
   font-weight: bold;
   color: #fff;
-  background-color: #e67e22; /* Couleur orange */
+  background-color: #e67e22;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.1s ease;
-  flex-shrink: 0; /* Empêche de trop rétrécir */
+  flex-shrink: 0;
 }
 
 .dice-roll-button:hover {
@@ -174,14 +163,12 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
   transform: scale(1.02);
 }
 
-/* Style quand le bouton est désactivé */
 .dice-roll-button:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Animation et affichage du dé */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -210,28 +197,25 @@ main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
 
 /* === Style Page d'Accueil === */
 
-/* Titre de la page d'accueil */
-main > h1 { /* Cible H1 direct enfant de main (pour l'accueil) */
+main > h1 {
     text-align: center;
     color: #333;
     margin-bottom: 10px;
 }
-main > p { /* Cible P direct enfant de main (pour l'accueil) */
+main > p {
     text-align: center;
     color: #555;
     font-size: 1.1em;
     margin-bottom: 40px;
 }
 
-/* Style pour la liste des histoires sur l'accueil */
 .story-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  margin-top: 40px;
+  /* Enlevé margin-top ici, le P au-dessus a déjà un margin-bottom */
 }
 
-/* Style pour chaque carte d'histoire */
 .story-card {
   background-color: #fff;
   border-radius: 8px;
@@ -246,7 +230,6 @@ main > p { /* Cible P direct enfant de main (pour l'accueil) */
     transform: translateY(-5px);
 }
 
-/* Style pour l'image de couverture */
 .story-image {
   width: 100%;
   height: 180px;
@@ -254,7 +237,6 @@ main > p { /* Cible P direct enfant de main (pour l'accueil) */
   display: block;
 }
 
-/* Contenu textuel de la carte */
 .story-content {
   padding: 20px;
   flex-grow: 1;
@@ -262,7 +244,6 @@ main > p { /* Cible P direct enfant de main (pour l'accueil) */
   flex-direction: column;
 }
 
-/* Titre de l'histoire sur la carte */
 .story-title {
   font-size: 1.4em;
   color: #333;
@@ -270,7 +251,6 @@ main > p { /* Cible P direct enfant de main (pour l'accueil) */
   margin-bottom: 10px;
 }
 
-/* Description de l'histoire sur la carte */
 .story-description {
   font-size: 0.9em;
   color: #555;
@@ -278,10 +258,9 @@ main > p { /* Cible P direct enfant de main (pour l'accueil) */
   margin-bottom: 15px;
 }
 
-/* Bouton "Commencer l'aventure" */
-.story-link {
+.story-link { /* Style commun pour commencer/reprendre */
   display: inline-block;
-  background-color: #5a4a9c;
+  background-color: #5a4a9c; /* Violet par défaut (Commencer) */
   color: #fff;
   text-decoration: none;
   padding: 10px 15px;
@@ -292,5 +271,32 @@ main > p { /* Cible P direct enfant de main (pour l'accueil) */
 }
 
 .story-link:hover {
-  background-color: #3e357a;
+  filter: brightness(1.1); /* Éclaircit un peu au survol */
+}
+
+/* === Style pour Sauvegarde Progression === */
+
+.resume-link { /* S'applique au lien qui a la classe ajoutée par JS */
+  background-color: #27ae60; /* Vert pour Reprendre */
+}
+/* Pas besoin de :hover spécifique, le filtre brightness général s'appliquera */
+
+.local-storage-warning {
+  font-size: 0.85em;
+  color: #7f8c8d;
+  background-color: #ecf0f1;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 40px; /* Espacement par rapport à la liste */
+  text-align: center;
+  border: 1px solid #bdc3c7;
+}
+.local-storage-warning strong {
+    color: #c0392b;
+}
+.local-storage-warning u {
+    text-decoration-style: wavy;
+    text-decoration-color: #7f8c8d;
+    text-decoration-thickness: 1px; /* Ajuste l'épaisseur si besoin */
+    text-underline-offset: 2px; /* Espace un peu le soulignement */
 }
