@@ -34,7 +34,7 @@ eleventyComputed:
                         {% if choix.choiceImage %}
                             <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="image-choice-link" title="{{ choix.text }}">
                                 <img src="/images/{{ choix.choiceImage }}" alt="{{ choix.text }}" class="choice-image">
-                                {# <span class="image-choice-text">{{ choix.text }}</span> #}
+                                <span class="image-choice-text">{{ choix.text }}</span>
                             </a>
 
                         {# === Sinon, vérifie si c'est un lancer de dé (avec la nouvelle structure) === #}
