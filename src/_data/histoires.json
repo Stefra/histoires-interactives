@@ -1,18 +1,3 @@
 [
-  {
-    "id": "ile-mystere",
-    "title": "L'île aux Mystères",
-    "description": "Échoué sur une île inconnue après une tempête...",
-    "coverImage": "ile-mystere-cover.jpg",
-    "startStepId": "start",
-    "ageCategory": "10-12 ans"
-  },
-  {
-    "id": "foret-perdue",
-    "title": "La Forêt Perdue",
-    "description": "Oserez-vous pénétrer dans cette forêt ancienne...",
-    "coverImage": "foret-perdue-cover.jpg",
-    "startStepId": "debut_foret",
-    "ageCategory": "6-9 ans"
-  }
+  
 ]
