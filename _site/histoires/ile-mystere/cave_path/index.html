@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>L&#39;île aux Mystères - {{ etape.id }}</title>
+    <title>{{ step.storyTitle }} - {{ step.id }}</title>
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -16,41 +16,53 @@
     <main>
         
 
-
-
-<h1>L'île aux Mystères</h1>
+<h1>L&#39;île aux Mystères</h1>
 
 <div class="etape-contenu">
+    
     <p>La grotte est sombre et humide. Tu aperçois une lumière au fond… Que fais-tu ?</p>
 
     
-     
-     <img src="/images/entree_grotte.jpg" alt="Illustration pour l'étape cave_path">
-     
-
     
-        <nav class="choix">
-            <ul>
-                
-                    <li>
-                        <a href="/histoires/ile-mystere/symbol_room/">Tu t’avances vers la lumière ?</a>
-                    </li>
-                
-                    <li>
-                        <a href="/histoires/ile-mystere/beach_return/">Tu fais demi-tour ?</a>
-                    </li>
-                
-            </ul>
-        </nav>
+      
+      <img src="/images/entree_grotte.jpg" alt="Illustration pour L&#39;île aux Mystères - cave_path">
     
 
+    
+    
+        <div id="dice-result-area"></div> 
+            <nav class="choix">
+                <ul>
+                    
+                        <li>
+                            
+                            
+                                
+                                <a href="/histoires/ile-mystere/symbol_room/">Tu t’avances vers la lumière ?</a>
+                            
+                        </li>
+                    
+                        <li>
+                            
+                            
+                                
+                                <a href="/histoires/ile-mystere/beach_return/">Tu fais demi-tour ?</a>
+                            
+                        </li>
+                    
+                </ul>
+            </nav>
+    
+
+    
     
 
 </div>
-
-
     </main>
 
+    
+    <script src="/js/main.js" defer></script>
+    
     
     
 

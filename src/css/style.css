@@ -153,3 +153,80 @@ body {
   .story-link:hover {
   background-color: #3e357a;
   }
+
+  /* === Style pour le Lancer de Dé === */
+
+  /* Zone pour afficher le résultat du dé */
+  #dice-result-area {
+    min-height: 2.5em; /* Garde un peu de place même si vide, un peu plus haut pour le dé */
+    margin-top: 15px; /* Espace au dessus */
+    margin-bottom: 25px; /* Espace avant les choix */
+    font-weight: bold;
+    font-size: 1.2em; /* Un peu plus grand */
+    color: #5a4a9c; /* Couleur du thème */
+    text-align: center;
+    display: flex; /* Pour mieux centrer le contenu verticalement/horizontalement */
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Style pour le bouton de lancer de dé */
+  .dice-roll-button {
+    display: block; /* Prend toute la largeur */
+    width: 100%;
+    padding: 15px 20px;
+    margin: 0 0 15px 0; /* Espace en dessous */
+    font-family: inherit; /* Utilise la même police que le reste */
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e67e22; /* Couleur orange */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+
+  .dice-roll-button:hover {
+    background-color: #d35400; /* Orange plus foncé */
+    transform: scale(1.02); /* Léger grossissement au survol */
+  }
+
+  /* Style quand le bouton est désactivé (pendant le lancer) */
+  .dice-roll-button:disabled {
+    background-color: #bdc3c7; /* Gris clair */
+    cursor: not-allowed;
+    transform: none; /* Pas d'effet au survol si désactivé */
+  }
+
+  /* --- Bonus: Animation et affichage du dé --- */
+
+  /* Petite animation de rotation pour le dé pendant le lancer */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .dice-animation {
+    display: inline-block; /* Permet d'appliquer la transformation */
+    animation: spin 1s linear infinite; /* Fait tourner le dé en continu */
+    font-size: 1.5em; /* Rend le dé un peu plus grand */
+    margin-left: 10px; /* Espace par rapport au texte */
+  }
+
+  /* Style pour afficher le dé du résultat (utilise les emojis de dés) */
+  .dice-result {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 8px; /* Espace avant le chiffre */
+    vertical-align: middle; /* Alignement vertical */
+  }
+
+  /* Associe chaque classe roll-X à l'emoji correspondant */
+  .roll-1::before { content: '⚀'; } /* Dé face 1 */
+  .roll-2::before { content: '⚁'; } /* Dé face 2 */
+  .roll-3::before { content: '⚂'; } /* Dé face 3 */
+  .roll-4::before { content: '⚃'; } /* Dé face 4 */
+  .roll-5::before { content: '⚄'; } /* Dé face 5 */
+  .roll-6::before { content: '⚅'; } /* Dé face 6 */

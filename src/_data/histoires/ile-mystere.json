@@ -10,11 +10,20 @@
     },
     {
       "id": "jungle_path",
-      "text": "Le sentier grimpe rapidement. Tu entends un bruissement dans les buissons… Que fais-tu ?",
+      "text": "Le sentier grimpe rapidement. Tu entends un bruissement dans les buissons… Tentes-tu une approche discrète ?",
       "image": "sentier_jungle.jpg",
       "choices": [
-        { "text": "Tu t’approches discrètement pour regarder ?", "target": "monkey_success" },
-        { "text": "Tu t’éloignes en courant ?", "target": "ravine_fail" }
+        {
+          "type": "dice",
+          "text": "Tenter l'approche (Discrétion : réussite si Dé >= 4)",
+          "successRollMinimum": 4,
+          "successTarget": "monkey_success",
+          "failureTarget": "approche_ratee"
+        },
+        {
+          "text": "Ignorer le bruit et continuer le sentier.",
+          "target": "sentier_plus_loin"
+        }
       ]
     },
     {
@@ -49,5 +58,11 @@
       "text": "Tu retournes sur la plage. Rien ne se passe.",
       "image": "plage_retour.jpg",
       "ending": { "type": "Neutre", "icon": "😐", "message": "Peut-être qu’il fallait oser…" }
+    },
+    {
+      "id": "approche_ratee",
+      "text": "Trop de bruit ! Tu fais craquer une brindille. La créature dans les buissons, alertée, s'enfuit à toute vitesse avant que tu puisses voir ce que c'était.",
+      "image": "buissons_vides.jpg",
+      "ending": { "type": "Neutre", "icon": "🤷", "message": "L'occasion est manquée. Que faire maintenant ?" }
     }
   ]

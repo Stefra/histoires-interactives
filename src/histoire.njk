@@ -28,17 +28,29 @@ title: "{{ step.storyTitle }} - {{ step.id }}"
 
     {# On vérifie step.choices #}
     {% if step.choices %}
-        <nav class="choix">
-            <ul>
-                {# On boucle sur step.choices #}
-                {% for choix in step.choices %}
-                    <li>
-                        {# Le lien pointe vers la bonne histoire (step.storyId) et la cible du choix (choix.target) #}
-                        <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/">{{ choix.text }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </nav>
+        <div id="dice-result-area"></div> {# Zone pour afficher le résultat du dé #}
+            <nav class="choix">
+                <ul>
+                    {% for choix in step.choices %}
+                        <li>
+                            {# === Vérification du type de choix === #}
+                            {% if choix.type == "dice" %}
+                                {# C'est un lancer de dé : on affiche un BOUTON #}
+                                <button class="dice-roll-button"
+                                    data-story-id="{{ step.storyId }}"
+                                    data-success-roll="{{ choix.successRollMinimum }}"
+                                    data-success-target="{{ choix.successTarget }}"
+                                    data-failure-target="{{ choix.failureTarget }}">
+                                    {{ choix.text }} {# Texte du bouton vient du JSON #}
+                                </button>
+                            {% else %}
+                                {# C'est un choix normal : on affiche un LIEN #}
+                                <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/">{{ choix.text }}</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
     {% endif %}
 
     {# On vérifie step.ending #}

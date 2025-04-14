@@ -4,6 +4,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/css");
     // Dit à Eleventy de copier le dossier 'src/images' vers '_site/images'
     eleventyConfig.addPassthroughCopy("src/images");
+    // Dit à Eleventy de copier le dossier 'src/js' vers '_site/js'
+    eleventyConfig.addPassthroughCopy("src/js");
 
     // Création d'une collection "allStorySteps"
     eleventyConfig.addCollection("allStorySteps", function(collectionApi) {

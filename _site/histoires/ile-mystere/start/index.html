@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>L&#39;île aux Mystères - {{ etape.id }}</title>
+    <title>{{ step.storyTitle }} - {{ step.id }}</title>
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -16,41 +16,53 @@
     <main>
         
 
-
-
-<h1>L'île aux Mystères</h1>
+<h1>L&#39;île aux Mystères</h1>
 
 <div class="etape-contenu">
+    
     <p>Tu t’es échoué sur une île inconnue après une tempête. La plage est silencieuse… mais tu aperçois deux chemins.</p>
 
     
-     
-     <img src="/images/plage_debut.jpg" alt="Illustration pour l'étape start">
-     
-
     
-        <nav class="choix">
-            <ul>
-                
-                    <li>
-                        <a href="/histoires/ile-mystere/jungle_path/">Suivre le sentier qui monte vers la jungle ?</a>
-                    </li>
-                
-                    <li>
-                        <a href="/histoires/ile-mystere/cave_path/">Explorer la grotte au pied de la falaise ?</a>
-                    </li>
-                
-            </ul>
-        </nav>
+      
+      <img src="/images/plage_debut.jpg" alt="Illustration pour L&#39;île aux Mystères - start">
     
 
+    
+    
+        <div id="dice-result-area"></div> 
+            <nav class="choix">
+                <ul>
+                    
+                        <li>
+                            
+                            
+                                
+                                <a href="/histoires/ile-mystere/jungle_path/">Suivre le sentier qui monte vers la jungle ?</a>
+                            
+                        </li>
+                    
+                        <li>
+                            
+                            
+                                
+                                <a href="/histoires/ile-mystere/cave_path/">Explorer la grotte au pied de la falaise ?</a>
+                            
+                        </li>
+                    
+                </ul>
+            </nav>
+    
+
+    
     
 
 </div>
-
-
     </main>
 
+    
+    <script src="/js/main.js" defer></script>
+    
     
     
 
