@@ -24,13 +24,21 @@ title: Bienvenue - Choisissez votre aventure !
 
     {# On boucle sur chaque histoire définie dans _data/histoires.json #}
     {% for story in histoires %}
-        <div class="story-card" data-category="{{ story.ageCategory }}">
+        {# Ajout de data-story-id et data-start-step pour que le JS puisse les lire #}
+        <div class="story-card"
+             data-category="{{ story.ageCategory }}"
+             data-story-id="{{ story.id }}"
+             data-start-step="{{ story.startStepId }}"
+             >
             {# Affiche l'image de couverture de l'histoire #}
             {% if story.coverImage %}
                 <img class="story-image" src="/images/{{ story.coverImage }}" alt="Illustration pour {{ story.title }}">
             {% endif %}
 
             <div class="story-content">
+                {# Ajout de l'élément SPAN pour afficher le statut (Terminé, Perdu, etc.) #}
+                <span class="story-status"></span>
+
                 {# Affiche le titre de l'histoire #}
                 <h2 class="story-title">{{ story.title }}</h2>
 
@@ -39,8 +47,8 @@ title: Bienvenue - Choisissez votre aventure !
                     <p class="story-description">{{ story.description }}</p>
                 {% endif %}
 
-                {# Crée le lien pour commencer l'histoire #}
-                {# L'URL pointe vers /histoires/ID_HISTOIRE/ID_PREMIERE_ETAPE/ #}
+                {# Crée le lien pour commencer/reprendre/recommencer l'histoire #}
+                {# L'URL et le texte seront mis à jour par le JavaScript #}
                 <a class="story-link" href="/histoires/{{ story.id }}/{{ story.startStepId }}/">Commencer l'aventure</a>
             </div>
         </div>

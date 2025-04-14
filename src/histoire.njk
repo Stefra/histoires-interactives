@@ -64,11 +64,9 @@ eleventyComputed:
 
     {# On vérifie step.ending #}
     {% if step.ending %}
-        <div class="fin">
-            {# On utilise step.ending... #}
+        <div class="fin" data-ending-type="{{ step.ending.type }}"> {# <-- AJOUTÉ data-ending-type #}
             <p><strong>{{ step.ending.type }} {{ step.ending.icon }}</strong></p>
             <p>{{ step.ending.message }}</p>
-            {# Le lien retourne toujours à l'accueil général #}
             <p><a href="/">Retourner à l'accueil</a></p>
         </div>
     {% endif %}

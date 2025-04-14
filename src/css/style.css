@@ -142,9 +142,9 @@ main {
 
 .dice-roll-button {
   display: block;
-  width: 100%; /* Prend la largeur de son conteneur li qui est dans le flex */
+  width: 100%;
   padding: 15px 20px;
-  margin: 0; /* Le gap du ul gère l'espacement */
+  margin: 0;
   font-family: inherit;
   font-size: 1em;
   font-weight: bold;
@@ -209,11 +209,39 @@ main > p {
     margin-bottom: 40px;
 }
 
+/* Filtres Catégories */
+.category-filters {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.filter-button {
+  background-color: #e9e9e9;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #ddd;
+}
+
+.filter-button.active {
+  background-color: #5a4a9c;
+  color: #fff;
+  border-color: #5a4a9c;
+}
+
+/* Liste des Histoires */
 .story-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  /* Enlevé margin-top ici, le P au-dessus a déjà un margin-bottom */
 }
 
 .story-card {
@@ -242,6 +270,29 @@ main > p {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* Statut Histoire (Accueil) */
+.story-status {
+  display: block;
+  text-align: right;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  min-height: 1.2em;
+}
+
+.story-status.status-completed {
+  color: #27ae60; /* Vert */
+}
+
+.story-status.status-lost {
+  color: #c0392b; /* Rouge */
+}
+
+.story-status.status-neutral { /* <-- Style ajouté pour Neutre */
+  color: #7f8c8d; /* Gris */
 }
 
 .story-title {
@@ -258,9 +309,9 @@ main > p {
   margin-bottom: 15px;
 }
 
-.story-link { /* Style commun pour commencer/reprendre */
+.story-link {
   display: inline-block;
-  background-color: #5a4a9c; /* Violet par défaut (Commencer) */
+  background-color: #5a4a9c;
   color: #fff;
   text-decoration: none;
   padding: 10px 15px;
@@ -271,15 +322,14 @@ main > p {
 }
 
 .story-link:hover {
-  filter: brightness(1.1); /* Éclaircit un peu au survol */
+  filter: brightness(1.1);
 }
 
 /* === Style pour Sauvegarde Progression === */
 
-.resume-link { /* S'applique au lien qui a la classe ajoutée par JS */
-  background-color: #27ae60; /* Vert pour Reprendre */
+.resume-link {
+  background-color: #27ae60;
 }
-/* Pas besoin de :hover spécifique, le filtre brightness général s'appliquera */
 
 .local-storage-warning {
   font-size: 0.85em;
@@ -287,7 +337,7 @@ main > p {
   background-color: #ecf0f1;
   padding: 15px;
   border-radius: 5px;
-  margin-top: 40px; /* Espacement par rapport à la liste */
+  margin-top: 40px;
   text-align: center;
   border: 1px solid #bdc3c7;
 }
@@ -297,41 +347,6 @@ main > p {
 .local-storage-warning u {
     text-decoration-style: wavy;
     text-decoration-color: #7f8c8d;
-    text-decoration-thickness: 1px; /* Ajuste l'épaisseur si besoin */
-    text-underline-offset: 2px; /* Espace un peu le soulignement */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
 }
-/* === Style pour Filtres Catégories === */
-
-.category-filters {
-  text-align: center; /* Centre les boutons */
-  margin-bottom: 30px; /* Espace avant la liste des histoires */
-}
-
-.filter-button {
-  background-color: #e9e9e9; /* Fond gris clair */
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 8px 15px;
-  margin: 5px; /* Espace entre les boutons */
-  border-radius: 20px; /* Boutons arrondis */
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.filter-button:hover {
-  background-color: #ddd;
-}
-
-.filter-button.active { /* Style du bouton actif */
-  background-color: #5a4a9c; /* Violet */
-  color: #fff;
-  border-color: #5a4a9c;
-}
-
-/* Style pour les cartes masquées (si on utilisait une classe) */
-/*
-.story-card.hidden {
-    display: none;
-}
-*/

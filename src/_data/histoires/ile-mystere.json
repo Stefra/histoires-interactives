@@ -71,6 +71,6 @@
       "id": "approche_ratee",
       "text": "Trop de bruit ! Tu fais craquer une brindille. La créature dans les buissons, alertée, s'enfuit à toute vitesse avant que tu puisses voir ce que c'était.",
       "image": "buissons_vides.jpg",
-      "ending": { "type": "Neutre", "icon": "🤷", "message": "L'occasion est manquée. Que faire maintenant ?" }
+      "ending": { "type": "Échec", "icon": "🤷", "message": "L'occasion est manquée. Que faire maintenant ?" }
     }
   ]
