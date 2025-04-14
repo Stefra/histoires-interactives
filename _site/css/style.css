@@ -1,232 +1,296 @@
 /* style.css */
 
-/* Style général pour toute la page */
+/* === Style Général === */
 body {
-    font-family: sans-serif; /* Choisit une police simple et lisible */
-    line-height: 1.6; /* Espace un peu les lignes de texte pour que ce soit plus facile à lire */
-    background-color: #f4f4f4; /* Met un arrière-plan gris très clair */
-    color: #333; /* Met le texte principal en gris foncé */
-    margin: 0; /* Enlève les marges par défaut du navigateur */
-    padding: 20px; /* Ajoute un peu d'espace autour du contenu */
-  }
-  
-  /* Conteneur principal de l'étape de l'histoire */
-  .etape-contenu {
-    max-width: 600px; /* Limite la largeur du contenu pour que les lignes ne soient pas trop longues */
-    margin: 20px auto; /* Centre le conteneur sur la page (auto pour les marges gauche/droite) */
-    background-color: #fff; /* Met un fond blanc pour le contenu */
-    padding: 30px; /* Ajoute de l'espace à l'intérieur du conteneur */
-    border-radius: 8px; /* Arrondit un peu les coins */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ajoute une légère ombre pour le faire ressortir */
-  }
-  
-  /* Le titre principal de l'histoire */
-  h1 {
-    color: #5a4a9c; /* Une couleur un peu violette pour le titre */
-    text-align: center; /* Centre le titre */
-    margin-bottom: 30px; /* Ajoute de l'espace en dessous */
-  }
-  
-  /* La navigation avec les choix */
-  .choix ul {
-    list-style: none; /* Enlève les puces de la liste */
-    padding: 0; /* Enlève l'espacement par défaut de la liste */
-    margin: 0; /* Enlève les marges par défaut de la liste */
-  }
-  
-  .choix li {
-    margin-bottom: 15px; /* Espace les boutons de choix entre eux */
-  }
-  
-  /* Les liens (boutons) de choix */
-  .choix a {
-    display: block; /* Fait que le lien prend toute la largeur disponible */
-    background-color: #5a4a9c; /* Même violet que le titre */
-    color: #fff; /* Texte en blanc */
-    text-decoration: none; /* Enlève le soulignement des liens */
-    padding: 15px 20px; /* Ajoute de l'espace à l'intérieur du bouton */
-    border-radius: 5px; /* Arrondit les coins du bouton */
-    text-align: center; /* Centre le texte du bouton */
-    transition: background-color 0.3s ease; /* Effet doux quand on passe la souris */
-  }
-  
-  /* Quand on passe la souris sur un bouton de choix */
-  .choix a:hover {
-    background-color: #3e357a; /* Assombrit un peu le bouton */
-  }
-  
-  /* La section de fin */
-  .fin {
-    margin-top: 30px; /* Espace la section de fin du reste */
-    padding: 20px;
-    background-color: #e9e9e9; /* Un fond gris clair différent */
-    border-left: 5px solid #5a4a9c; /* Ajoute une bordure colorée à gauche */
-    border-radius: 4px;
-  }
-  
-  .fin strong {
-    font-size: 1.1em; /* Rend le type de fin un peu plus grand */
-  }
-  
-  .fin a {
-   color: #3e357a; /* Change la couleur du lien "Retourner à l'accueil" */
-  }
+  font-family: sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
 
-  /* Style pour les images dans le contenu de l'étape */
-  .etape-contenu img {
-  max-width: 100%; /* Fait que l'image ne dépasse jamais la largeur de son conteneur */
-  height: auto; /* Garde les proportions de l'image quand on ajuste la largeur */
-  display: block; /* Évite certains problèmes d'espacement sous l'image */
-  margin-top: 20px; /* Ajoute un peu d'espace au-dessus de l'image */
-  margin-bottom: 20px; /* Ajoute un peu d'espace en dessous de l'image */
-  border-radius: 4px; /* Arrondit légèrement les coins (facultatif) */
-  }
+main { /* Ajouté pour contenir le contenu principal (bonne pratique) */
+    max-width: 800px; /* Un peu plus large pour l'accueil */
+    margin: 0 auto; /* Centre le contenu principal */
+}
 
-  /* Style pour la liste des histoires sur l'accueil */
-  .story-list {
-  display: grid; /* Utilise une grille pour organiser les cartes */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Crée des colonnes flexibles */
-  gap: 30px; /* Espace entre les cartes */
-  margin-top: 40px; /* Espace après le message de bienvenue */
-  }
+/* === Style Page d'Histoire === */
 
-  /* Style pour chaque carte d'histoire */
-  .story-card {
+/* Conteneur du contenu de l'étape */
+.etape-contenu {
+  max-width: 600px; /* Largeur spécifique pour les étapes d'histoire */
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Titre principal de l'histoire (dans l'étape) */
+.etape-contenu h1 { /* Cible H1 dans .etape-contenu */
+  color: #5a4a9c;
+  text-align: center;
+  margin-top: 0; /* Enlève marge sup si c'est le premier élément */
+  margin-bottom: 30px;
+}
+
+/* Style pour les images dans le contenu de l'étape */
+.etape-contenu img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+/* La section de fin */
+.fin {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #e9e9e9;
+  border-left: 5px solid #5a4a9c;
+  border-radius: 4px;
+}
+
+.fin strong {
+  font-size: 1.1em;
+}
+
+.fin a {
+ color: #3e357a;
+}
+
+/* === Style pour les Choix (dans une histoire) === */
+
+/* La navigation avec les choix */
+.choix ul { /* Cible la liste <ul> DANS l'élément avec la classe 'choix' */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Met les éléments en ligne */
+  flex-wrap: wrap; /* Permet le retour à la ligne si pas assez de place */
+  justify-content: center; /* Centre les choix horizontalement */
+  gap: 25px; /* Espace entre les différents choix */
+}
+
+.choix li {
+   margin-bottom: 0; /* Le gap gère l'espacement vertical si wrap */
+}
+
+/* Liens texte normaux */
+.text-choice-link {
+  display: block; /* Assure un affichage correct */
+  background-color: #5a4a9c; /* Violet */
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Empêche de trop rétrécir si manque de place */
+}
+
+.text-choice-link:hover {
+  background-color: #3e357a;
+}
+
+/* === Style pour les Choix par Image === */
+
+/* Style du lien qui entoure l'image de choix */
+.image-choice-link {
+  display: block;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+  width: 200px; /* Largeur fixe (ajuster si besoin) */
+  background-color: #f0f0f0;
+  flex-shrink: 0; /* Empêche de trop rétrécir */
+}
+
+.image-choice-link:hover {
+  border-color: #5a4a9c;
+  transform: scale(1.05);
+}
+
+/* Style de l'image de choix elle-même */
+.choice-image {
+  display: block;
+  width: 100%;
+  height: 150px; /* Hauteur fixe (ajuster si besoin) */
+  object-fit: cover;
+}
+
+/* Style pour le texte sous l'image (si on l'active plus tard) */
+/*
+.image-choice-text {
+  display: block;
+  padding: 8px;
+  font-size: 0.9em;
+  text-align: center;
+  color: #333;
+}
+*/
+
+/* === Style pour le Lancer de Dé === */
+
+/* Zone pour afficher le résultat du dé */
+#dice-result-area {
+  min-height: 2.5em;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #5a4a9c;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style pour le bouton de lancer de dé */
+.dice-roll-button {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  margin: 0; /* Le gap du ul gère l'espacement */
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #e67e22; /* Couleur orange */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  flex-shrink: 0; /* Empêche de trop rétrécir */
+}
+
+.dice-roll-button:hover {
+  background-color: #d35400;
+  transform: scale(1.02);
+}
+
+/* Style quand le bouton est désactivé */
+.dice-roll-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Animation et affichage du dé */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.dice-animation {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  font-size: 1.5em;
+  margin-left: 10px;
+}
+
+.dice-result {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.roll-1::before { content: '⚀'; }
+.roll-2::before { content: '⚁'; }
+.roll-3::before { content: '⚂'; }
+.roll-4::before { content: '⚃'; }
+.roll-5::before { content: '⚄'; }
+.roll-6::before { content: '⚅'; }
+
+/* === Style Page d'Accueil === */
+
+/* Titre de la page d'accueil */
+main > h1 { /* Cible H1 direct enfant de main (pour l'accueil) */
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+main > p { /* Cible P direct enfant de main (pour l'accueil) */
+    text-align: center;
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+}
+
+/* Style pour la liste des histoires sur l'accueil */
+.story-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Style pour chaque carte d'histoire */
+.story-card {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  overflow: hidden; /* Cache ce qui dépasse (si l'image est un peu grande) */
-  display: flex; /* Optionnel : pour mieux organiser si besoin */
-  flex-direction: column; /* Met l'image en haut, le contenu en bas */
-  transition: transform 0.3s ease; /* Petit effet quand on survole */
-  }
-
-  .story-card:hover {
-    transform: translateY(-5px); /* Soulève légèrement la carte au survol */
-  }
-
-  /* Style pour l'image de couverture */
-  .story-image {
-  width: 100%; /* Prend toute la largeur de la carte */
-  height: 180px; /* Hauteur fixe pour l'image (ajuste selon tes goûts) */
-  object-fit: cover; /* Redimensionne l'image pour remplir l'espace sans déformer */
-  display: block; /* Évite les espaces bizarres */
-  }
-
-  /* Contenu textuel de la carte */
-  .story-content {
-  padding: 20px;
-  flex-grow: 1; /* Permet à cette partie de grandir pour remplir l'espace */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  }
+  transition: transform 0.3s ease;
+}
 
-  /* Titre de l'histoire sur la carte */
-  .story-title {
+.story-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Style pour l'image de couverture */
+.story-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenu textuel de la carte */
+.story-content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titre de l'histoire sur la carte */
+.story-title {
   font-size: 1.4em;
   color: #333;
   margin-top: 0;
   margin-bottom: 10px;
-  }
+}
 
-  /* Description de l'histoire sur la carte */
-  .story-description {
+/* Description de l'histoire sur la carte */
+.story-description {
   font-size: 0.9em;
   color: #555;
-  flex-grow: 1; /* Pousse le bouton vers le bas */
+  flex-grow: 1;
   margin-bottom: 15px;
-  }
+}
 
-  /* Bouton "Commencer l'aventure" */
-  .story-link {
-  display: inline-block; /* Pour que le padding fonctionne bien */
-  background-color: #5a4a9c; /* Même violet que les choix */
+/* Bouton "Commencer l'aventure" */
+.story-link {
+  display: inline-block;
+  background-color: #5a4a9c;
   color: #fff;
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
   text-align: center;
-  margin-top: auto; /* Se colle en bas si l'espace le permet */
+  margin-top: auto;
   transition: background-color 0.3s ease;
-  }
+}
 
-  .story-link:hover {
+.story-link:hover {
   background-color: #3e357a;
-  }
-
-  /* === Style pour le Lancer de Dé === */
-
-  /* Zone pour afficher le résultat du dé */
-  #dice-result-area {
-    min-height: 2.5em; /* Garde un peu de place même si vide, un peu plus haut pour le dé */
-    margin-top: 15px; /* Espace au dessus */
-    margin-bottom: 25px; /* Espace avant les choix */
-    font-weight: bold;
-    font-size: 1.2em; /* Un peu plus grand */
-    color: #5a4a9c; /* Couleur du thème */
-    text-align: center;
-    display: flex; /* Pour mieux centrer le contenu verticalement/horizontalement */
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Style pour le bouton de lancer de dé */
-  .dice-roll-button {
-    display: block; /* Prend toute la largeur */
-    width: 100%;
-    padding: 15px 20px;
-    margin: 0 0 15px 0; /* Espace en dessous */
-    font-family: inherit; /* Utilise la même police que le reste */
-    font-size: 1em;
-    font-weight: bold;
-    color: #fff;
-    background-color: #e67e22; /* Couleur orange */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-  }
-
-  .dice-roll-button:hover {
-    background-color: #d35400; /* Orange plus foncé */
-    transform: scale(1.02); /* Léger grossissement au survol */
-  }
-
-  /* Style quand le bouton est désactivé (pendant le lancer) */
-  .dice-roll-button:disabled {
-    background-color: #bdc3c7; /* Gris clair */
-    cursor: not-allowed;
-    transform: none; /* Pas d'effet au survol si désactivé */
-  }
-
-  /* --- Bonus: Animation et affichage du dé --- */
-
-  /* Petite animation de rotation pour le dé pendant le lancer */
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .dice-animation {
-    display: inline-block; /* Permet d'appliquer la transformation */
-    animation: spin 1s linear infinite; /* Fait tourner le dé en continu */
-    font-size: 1.5em; /* Rend le dé un peu plus grand */
-    margin-left: 10px; /* Espace par rapport au texte */
-  }
-
-  /* Style pour afficher le dé du résultat (utilise les emojis de dés) */
-  .dice-result {
-    display: inline-block;
-    font-size: 1.5em;
-    margin-right: 8px; /* Espace avant le chiffre */
-    vertical-align: middle; /* Alignement vertical */
-  }
-
-  /* Associe chaque classe roll-X à l'emoji correspondant */
-  .roll-1::before { content: '⚀'; } /* Dé face 1 */
-  .roll-2::before { content: '⚁'; } /* Dé face 2 */
-  .roll-3::before { content: '⚂'; } /* Dé face 3 */
-  .roll-4::before { content: '⚃'; } /* Dé face 4 */
-  .roll-5::before { content: '⚄'; } /* Dé face 5 */
-  .roll-6::before { content: '⚅'; } /* Dé face 6 */
+}

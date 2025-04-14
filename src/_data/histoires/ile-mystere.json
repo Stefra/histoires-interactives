@@ -4,8 +4,16 @@
       "text": "Tu t’es échoué sur une île inconnue après une tempête. La plage est silencieuse… mais tu aperçois deux chemins.",
       "image": "plage_debut.jpg",
       "choices": [
-        { "text": "Suivre le sentier qui monte vers la jungle ?", "target": "jungle_path" },
-        { "text": "Explorer la grotte au pied de la falaise ?", "target": "cave_path" }
+        {
+          "text": "Suivre le sentier qui monte vers la jungle ?",
+          "target": "jungle_path",
+          "choiceImage": "choice_jungle.jpg"
+        },
+        {
+          "text": "Explorer la grotte au pied de la falaise ?",
+          "target": "cave_path",
+          "choiceImage": "choice_cave.jpg"
+        }
       ]
     },
     {
@@ -22,7 +30,7 @@
         },
         {
           "text": "Ignorer le bruit et continuer le sentier.",
-          "target": "sentier_plus_loin"
+          "target": "approche_ratee"
         }
       ]
     },

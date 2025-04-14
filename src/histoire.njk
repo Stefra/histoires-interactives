@@ -10,7 +10,8 @@ permalink: "/histoires/{{ step.storyId }}/{{ step.id }}/index.html"
 # On utilise le layout de base
 layout: base.njk
 # Le titre de la page utilise le titre de l'histoire (ajouté dans la collection) et l'ID de l'étape
-title: "{{ step.storyTitle }} - {{ step.id }}"
+eleventyComputed:
+  title: "{{ step.storyTitle | safe }} - {{ step.id }}"
 ---
 
 {# Titre principal de la page - on utilise aussi le titre de l'histoire #}
@@ -33,19 +34,27 @@ title: "{{ step.storyTitle }} - {{ step.id }}"
                 <ul>
                     {% for choix in step.choices %}
                         <li>
-                            {# === Vérification du type de choix === #}
-                            {% if choix.type == "dice" %}
-                                {# C'est un lancer de dé : on affiche un BOUTON #}
+                            {# === Vérifie si c'est un choix avec image === #}
+                            {% if choix.choiceImage %}
+                                <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="image-choice-link" title="{{ choix.text }}"> {# Le lien englobe l'image, title utilise le texte #}
+                                    <img src="/images/{{ choix.choiceImage }}" alt="{{ choix.text }}" class="choice-image">
+                                    {# Optionnel: Afficher le texte sous l'image si souhaité #}
+                                    {# <span class="image-choice-text">{{ choix.text }}</span> #}
+                                </a>
+
+                            {# === Sinon, vérifie si c'est un lancer de dé === #}
+                            {% elif choix.type == "dice" %}
                                 <button class="dice-roll-button"
                                     data-story-id="{{ step.storyId }}"
                                     data-success-roll="{{ choix.successRollMinimum }}"
                                     data-success-target="{{ choix.successTarget }}"
                                     data-failure-target="{{ choix.failureTarget }}">
-                                    {{ choix.text }} {# Texte du bouton vient du JSON #}
+                                    {{ choix.text }}
                                 </button>
+
+                            {# === Sinon, c'est un choix texte normal === #}
                             {% else %}
-                                {# C'est un choix normal : on affiche un LIEN #}
-                                <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/">{{ choix.text }}</a>
+                                <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="text-choice-link">{{ choix.text }}</a>
                             {% endif %}
                         </li>
                     {% endfor %}
