@@ -70,15 +70,41 @@
         ]
     },
     {
-        "id": "herisson_carte",
-        "text": "Tu tapotes doucement le hérisson. Il ouvre un œil, grogne, mais voit la noisette. Il la croque avec un grand sourire ! \"Miam ! Merci petit ! Tiens, j'ai fait cette carte, elle montre comment aller au grand ruisseau.\"",
-        "image": "herisson_carte.jpg",
-        "choices": [
-          {
-            "text": "Prendre la carte et aller au ruisseau",
-            "target": "scene_3"
-          }
-        ]
+      "id": "herisson_carte",
+      "text": "Tu tapotes doucement le hérisson. Il ouvre un œil, grogne, mais voit la noisette. Il la croque avec un grand sourire ! \\\"Miam ! Merci petit ! Tiens, j'ai fait cette carte, elle montre comment aller au grand ruisseau.\\\"",
+      "image": "herisson_carte.jpg",
+      "choices": [
+        {
+          "text": "Regarder la carte de plus près",
+          "target": "carte_detail"
+        }
+      ]
+    },
+    {
+      "id": "carte_detail",
+      "text": "Tu déplies la petite carte dessinée avec des pattes. Elle montre un gros chêne près d'une eau qui coule. Tu remarques aussi un petit dessin de fleur près d'un rocher sur le côté du chemin principal.",
+      "image": "carte_zoom.jpg",
+      "choices": [
+        {
+          "text": "Suivre la direction du grand chêne et du ruisseau",
+          "target": "scene_3"
+        },
+        {
+          "text": "Aller jeter un œil au rocher avec la fleur",
+          "target": "rocher_fleur"
+        }
+      ]
+    },
+    {
+      "id": "rocher_fleur",
+      "text": "Tu fais un petit détour vers le rocher indiqué sur la carte. Près d'une jolie fleur bleue, tu trouves une magnifique plume brillante aux couleurs de l'arc-en-ciel ! Tu la ramasses précieusement.",
+      "image": "rocher_plume.jpg",
+      "choices": [
+        {
+          "text": "Mettre la plume en sécurité et aller vers le ruisseau",
+          "target": "scene_3"
+        }
+      ]
     },
     {
         "id": "fin_boue",
