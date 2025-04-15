@@ -11,6 +11,17 @@
         },
         {
           "text": "🍃 Passer par le tunnel de buissons",
+          "target": "tunnel_buissons_interieur"
+        }
+      ]
+    },
+    {
+      "id": "tunnel_buissons_interieur",
+      "text": "Tu te faufiles à quatre pattes dans le tunnel formé par les branches et les feuilles. C'est un peu sombre ici, ça sent bon la terre humide. Tu entends le bourdonnement d'un gros scarabée juste à côté de ta truffe.",
+      "image": "tunnel_buissons_interieur.jpg",
+      "choices": [
+        {
+          "text": "Continuer vers la sortie du tunnel",
           "target": "scene_2b"
         }
       ]
@@ -44,15 +55,26 @@
       ]
     },
     {
-        "id": "fuite_retour_depart",
-        "text": "Tu te précipites dans les buissons touffus ! Après avoir couru un moment, tu te rends compte que tu tournes en rond... Tu décides de revenir sur tes pas, jusqu'au début du sentier.",
-        "image": "buissons_perdu.jpg",
-        "choices": [
-          {
-            "text": "Retourner au choix des deux chemins",
-            "target": "depart"
-          }
-        ]
+      "id": "fuite_retour_depart",
+      "text": "Tu te précipites dans les buissons touffus ! Après avoir couru un moment, tu te rends compte que tu tournes en rond...",
+      "image": "buissons_perdu.jpg",
+      "choices": [
+        {
+          "text": "Essayer de retrouver le chemin...",
+          "target": "vignes_accrocheuses"
+        }
+      ]
+    },
+    {
+      "id": "vignes_accrocheuses",
+      "text": "En essayant de te frayer un chemin, tes pattes s'emmêlent dans des vignes tenaces qui pendent des arbres ! Il te faut un petit moment pour te libérer en tirant doucement.",
+      "image": "vignes_accrocheuses.jpg",
+      "choices": [
+        {
+          "text": "Ouf ! Retourner au début du sentier maintenant.",
+          "target": "depart"
+        }
+      ]
     },
     {
         "id": "scene_2b",
@@ -143,38 +165,56 @@
       ]
     },
     {
-        "id": "scene_3",
-        "text": "Tu arrives près d'un ruisseau qui murmure joyeusement. Pour continuer, il faut traverser sur un vieux tronc d'arbre couvert de mousse. Il a l'air un peu glissant ! Vas-tu essayer de traverser ?",
-        "image": "ruisseau_tronc.jpg",
-        "choices": [
-          {
-            "type": "dice",
-            "text": "🎲 Traverser prudemment (Équilibre : Lancer 1D6)",
-            "outcomes": [
-              {
-                "rolls": [1, 2, 3],
-                "description": "Splash !",
-                "target": "scene_4a"
-              },
-              {
-                "rolls": [4, 5, 6],
-                "description": "Bien joué !",
-                "target": "scene_4b"
-              }
-            ]
-          }
-        ]
+      "id": "scene_3",
+      "text": "Tu arrives près d'un ruisseau qui murmure joyeusement. Pour continuer, il faut traverser sur un vieux tronc d'arbre couvert de mousse. Il a l'air un peu glissant !",
+      "image": "ruisseau_tronc.jpg",
+      "choices": [
+        {
+          "type": "dice",
+          "text": "🎲 Tenter de traverser sur le tronc (Équilibre : Lancer 1D6)",
+          "outcomes": [
+            { "rolls": [1, 2, 3], "description": "Splash !", "target": "sortir_eau_mouille" },
+            { "rolls": [4, 5, 6], "description": "Bien joué !", "target": "scene_4b" }
+          ]
+        },
+        {
+          "text": "Chercher un autre passage ?",
+          "target": "autre_passage_ruisseau"
+        }
+      ]
     },
     {
-        "id": "scene_4a",
-        "text": "Zoups ! Tes pattes glissent sur la mousse et PLOUF ! Tu tombes dans l'eau fraîche du ruisseau. Brrr ! En sortant, tout dégoulinant, tu aperçois une petite ouverture dans la berge... et une longue oreille blanche qui dépasse ! C'est Léo le lapin !",
-        "image": "milo_mouille_leo.jpg",
-        "choices": [
-          {
-            "text": "Content de retrouver Léo !",
-            "target": "scene_finale"
-          }
-        ]
+      "id": "sortir_eau_mouille",
+      "text": "Gloups ! Te voilà dans l'eau ! Elle est froide et te mouille jusqu'aux oreilles. Tu barbotes vite jusqu'à la rive et tu te hisses sur l'herbe, tout dégoulinant et grelottant un peu.",
+      "image": "milo_sort_eau.jpg",
+      "choices": [
+        {
+          "text": "S'ébrouer pour se sécher",
+          "target": "scene_4a"
+        }
+      ]
+    },
+    {
+      "id": "autre_passage_ruisseau",
+      "text": "Tu longes un peu le ruisseau en amont. Après quelques pas, tu repères un endroit où de grosses pierres plates forment un passage presque à sec. Ça semble plus sûr !",
+      "image": "passage_pierres.jpg",
+      "choices": [
+        {
+          "text": "Traverser par les pierres",
+          "target": "scene_4b"
+        }
+      ]
+    },
+    {
+      "id": "scene_4a",
+      "text": "Alors que tu t'ébroues pour enlever l'eau de ton pelage, tu aperçois une petite ouverture dans la berge juste à côté... et une longue oreille blanche qui dépasse ! C'est Léo le lapin ! Il te regarde d'un air un peu inquiet.",
+      "image": "milo_voit_leo.jpg",
+      "choices": [
+        {
+          "text": "Content de retrouver Léo !",
+          "target": "scene_finale"
+        }
+      ]
     },
     {
         "id": "scene_4b",
