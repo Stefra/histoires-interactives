@@ -1,358 +1,417 @@
 /* ===================================== */
 /* ===      Styles Généraux          === */
 /* ===================================== */
+
+/* Importation de polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap');
+
+/*
+ Police Principale (Texte courant): 'Lora', serif (plus douce que Georgia)
+ Police Secondaire (Titres, UI): 'Source Sans 3', sans-serif (moderne et lisible)
+*/
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: 'Georgia', serif;
-  background-color: #222; /* Fond sombre principal */
-  color: #f4f4f4;       /* Texte clair par défaut */
-  line-height: 1.6;     /* Interligne pour lisibilité */
+    font-family: 'Lora', serif; /* Police Serif pour le texte principal */
+    background-color: #1a1a1a; /* Fond un peu moins noir que #222 */
+    color: #e0e0e0;            /* Texte principal légèrement moins blanc que #f4f4f4 */
+    line-height: 1.7;          /* Augmenté pour meilleure lisibilité */
+    padding: 15px 0;
+    font-weight: 400; /* Poids normal pour Lora */
 }
 
-a { /* Style global des liens */
-  color: #e8491d; /* Couleur orange */
-  text-decoration: none;
+/* Utilisation de la police Sans Serif pour les éléments UI importants */
+h1, h2, h3, h4, h5, h6, button, .button-like, .filter-button, .story-link, .text-choice-link, .dice-roll-button, .fin strong, .story-status {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600; /* Un peu plus gras pour les titres et boutons */
+}
+
+a {
+    color: #ff8c42; /* Orange un peu plus vif */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #f4f4f4; /* Changement au survol */
+    color: #ffa56b; /* Orange plus clair au survol */
 }
 
 /* ===================================== */
 /* ===      Layout Principal         === */
 /* ===================================== */
-main { /* Appliqué à la balise <main> dans base.njk */
-  max-width: 960px; /* Largeur maximale du contenu */
-  margin: 30px auto; /* Centre horizontalement avec marges haute/basse */
-  background-color: #333; /* Fond du conteneur central */
-  padding: 25px 30px; /* Espace intérieur */
-  border-radius: 8px; /* Coins arrondis */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Ombre portée */
+main {
+    max-width: 980px; /* Légèrement plus large */
+    margin: 35px auto;
+    background-color: #282828; /* Gris foncé un peu plus clair que #333 */
+    padding: 30px 40px; /* Plus de padding */
+    border-radius: 10px; /* Coins plus arrondis */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Ombre plus prononcée */
 }
 
 /* ===================================== */
 /* === Styles Page d'Accueil (index.njk) === */
 /* ===================================== */
 
-/* Titre H1 et paragraphe intro sur l'accueil */
-/* Ciblage plus précis si nécessaire avec des classes */
-main > h1 {
-   color: #e8491d;
-   text-align: center;
-   margin-bottom: 15px;
-   font-size: 2.5em; /* Taille titre accueil */
+main > h1 { /* Titre Accueil */
+     color: #ff8c42; /* Orange vif */
+     text-align: center;
+     margin-bottom: 15px;
+     font-size: 2.8em; /* Plus grand */
+     font-weight: 700; /* Plus gras */
+     letter-spacing: 1px; /* Espace lettres */
 }
-
-main > h1 + p {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #ccc; /* Texte d'intro un peu moins blanc */
+main > p { /* Intro Accueil */
+    text-align: center;
+    margin-bottom: 40px;
+    color: #b0b0b0; /* Gris plus clair */
+    font-size: 1.2em;
+    font-family: 'Source Sans 3', sans-serif; /* Utilise Sans Serif pour l'intro */
+    font-weight: 300; /* Plus léger */
 }
 
 /* Filtres par catégorie */
 .category-filters {
-  text-align: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #555; /* Ligne de séparation */
+    text-align: center;
+    margin-bottom: 40px; /* Plus d'espace */
+    padding-bottom: 25px;
+    border-bottom: 1px solid #444; /* Ligne séparation plus discrète */
 }
 
-.category-filters .filter-button {
-  background-color: #555;
-  color: #f4f4f4;
-  border: none;
-  padding: 8px 15px;
-  margin: 0 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 0.9em;
-  transition: background-color 0.3s ease;
+.filter-button {
+    background-color: transparent; /* Fond transparent */
+    color: #b0b0b0; /* Gris clair */
+    border: 1px solid #555; /* Bordure grise */
+    padding: 8px 18px; /* Un peu plus de padding */
+    margin: 5px 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95em; /* Légèrement plus grand */
+    transition: all 0.3s ease; /* Transition plus complète */
+    font-weight: 400; /* Normal */
 }
 
-.category-filters .filter-button:hover,
-.category-filters .filter-button.active { /* Style quand actif (via JS) */
-  background-color: #e8491d; /* Orange */
-  color: #fff;
+.filter-button:hover {
+    background-color: #444; /* Fond au survol */
+    border-color: #777;
+    color: #fff;
+}
+
+.filter-button.active {
+    background-color: #ff8c42; /* Orange vif pour actif */
+    color: #1a1a1a; /* Texte foncé sur fond orange */
+    border-color: #ff8c42;
+    font-weight: 600; /* Plus gras si actif */
 }
 
 /* Liste des histoires */
 .story-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colonnes responsives */
-  gap: 30px; /* Espace entre les cartes */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); /* Cartes un peu plus larges */
+    gap: 35px; /* Plus d'espace */
 }
 
 /* Carte d'histoire individuelle */
 .story-card {
-  background-color: #444; /* Fond de carte */
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #3a3a3a; /* Fond de carte */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .story-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    transform: translateY(-6px) scale(1.01); /* Effet plus prononcé */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .story-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-  border-bottom: 3px solid #e8491d; /* Bordure image */
+    width: 100%;
+    height: 190px; /* Un peu plus haut */
+    object-fit: cover;
+    display: block;
+    border-bottom: 4px solid #ff8c42; /* Ligne orange plus épaisse */
 }
 
 .story-content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    padding: 25px; /* Plus de padding */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
 }
 
+/* Statut Histoire (Accueil) */
 .story-status {
-  font-size: 0.8em;
-  color: #aaa;
-  margin-bottom: 8px;
-  min-height: 1.2em; /* Espace même si vide */
-  text-align: right; /* Ou left, selon préférence */
+    display: block;
+    text-align: right;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 8px;
+    min-height: 1.2em;
+    text-transform: uppercase; /* En majuscules */
+    letter-spacing: 0.5px; /* Espace lettres */
 }
+.story-status.status-completed { color: #5cb85c; } /* Vert */
+.story-status.status-lost { color: #d9534f; } /* Rouge */
+.story-status.status-neutral { color: #aaa; } /* Gris */
+
 
 .story-title {
-  color: #f4f4f4;
-  font-size: 1.5em;
-  margin-bottom: 10px;
+    color: #f5f5f5; /* Presque blanc */
+    font-size: 1.5em; /* Un peu plus grand */
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: 700; /* Plus gras */
 }
 
 .story-description {
-  font-size: 0.95em;
-  color: #ccc;
-  margin-bottom: 15px;
-  flex-grow: 1;
+    font-family: 'Source Sans 3', sans-serif; /* Utilise Sans Serif */
+    font-size: 0.95em;
+    color: #c0c0c0; /* Gris plus clair */
+    flex-grow: 1;
+    margin-bottom: 20px;
+    font-weight: 400; /* Normal */
 }
 
-.story-link { /* Bouton "Commencer l'aventure" */
-  display: block;
-  background-color: #e8491d;
-  color: #fff;
-  padding: 12px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-top: auto; /* Se colle en bas */
+/* Bouton \\\"Commencer\\\" / \\\"Reprendre\\\" / \\\"Recommencer\\\" */
+.story-link {
+    display: inline-block;
+    background-color: #ff8c42; /* Orange vif */
+    color: #1a1a1a; /* Texte foncé */
+    text-decoration: none;
+    padding: 12px 20px; /* Plus de padding */
+    border-radius: 6px;
+    text-align: center;
+    margin-top: auto;
+    transition: all 0.3s ease;
+    font-weight: 700; /* Gras */
+    align-self: center; /* Centre le bouton horizontalement */
 }
 
 .story-link:hover {
-  background-color: #f05f3b; /* Orange plus clair */
-  color: #fff;
+    background-color: #ffa56b; /* Orange plus clair */
+    transform: scale(1.05); /* Grossit un peu */
+    filter: none; /* Enlève le filter précédent */
 }
+
+.resume-link {
+    background-color: #5cb85c; /* Vert */
+    color: #fff; /* Texte blanc */
+}
+.resume-link:hover {
+    background-color: #4cae4c;
+    color: #fff;
+}
+
 
 /* ===================================================== */
 /* === Styles Page d'Histoire Individuelle (histoire.njk) === */
 /* ===================================================== */
 
-/* Titre de l'histoire sur la page d'étape (H1 dans <main>) */
-/* Si vous voulez une taille différente de l'accueil, ciblez plus spécifiquement */
-/* main h1 { ... } est déjà défini plus haut, on peut le laisser commun */
-
-/* Conteneur spécifique de l'étape (peu de style nécessaire ici) */
+/* Conteneur spécifique de l'étape */
 .etape-contenu {
-  margin-top: 15px; /* Un peu d'espace après le H1 */
+  max-width: 700px;
+  margin: 40px auto; /* Plus de marge verticale */
+  background-color: #2f2f2f; /* Fond contenu un peu plus foncé */
+  padding: 35px 45px; /* Plus de padding */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  border-top: 5px solid #ff8c42; /* Ligne orange en haut */
+}
+
+/* Titre de l'histoire sur la page d'étape (H1 dans .etape-contenu) */
+.etape-contenu h1 {
+    color: #ff8c42; /* Orange */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2.2em; /* Plus grand */
+    font-weight: 700;
 }
 
 /* Texte principal de l'étape */
-.etape-contenu > p { /* Cible le P directement enfant */
-  margin-bottom: 1.5em;
-  line-height: 1.7;
-  font-size: 1.1em; /* Texte un peu plus grand pour l'histoire */
+.etape-contenu > p {
+    margin-bottom: 1.8em; /* Plus d'espace */
+    line-height: 1.8; /* Interligne augmenté */
+    font-size: 1.15em; /* Texte un peu plus grand */
+    color: #e0e0e0; /* Texte adouci */
 }
 
 /* Image de l'étape */
 .etape-contenu img {
-  /* Limiter la largeur (peut être réduit si besoin, ex: 70% ou 60%) */
-  max-width: 80%;
-
-  /* === AJOUT PRINCIPAL === */
-  /* Limite la hauteur maximale à 40% de la hauteur de la fenêtre */
-  /* Ajustez cette valeur (ex: 35vh, 45vh) selon vos préférences */
-  max-height: 40vh;
-
-  /* Assurez-vous que ces lignes sont présentes pour maintenir les proportions */
-  height: auto;  /* La hauteur s'ajuste pour garder le ratio */
-  width: auto;   /* La largeur s'ajuste aussi si max-height est atteint en premier */
-
-  /* Styles existants */
-  display: block;
-  margin: 25px auto;
-  border-radius: 5px;
-  border: 3px solid #555;
-  object-fit: contain; /* Optionnel: Assure que toute l'image est visible, peut ajouter des bandes */
-                      /* 'cover' (par défaut si dimensions fixes) rogne pour remplir */
+    max-width: 90%; /* Peut prendre plus de largeur */
+    max-height: 45vh; /* Légèrement plus haut autorisé */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 30px auto; /* Plus d'espace */
+    border-radius: 6px;
+    border: none; /* Pas de bordure par défaut */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4); /* Ombre portée */
 }
 
 /* Zone pour le résultat des dés */
 #dice-result-area {
-  min-height: 30px;
-  margin: 20px 0;
-  padding: 10px 15px;
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 4px;
+  min-height: 2.8em;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-weight: 600; /* Un peu moins gras */
+  font-size: 1.3em;
+  color: #f0f0f0;
   text-align: center;
-  font-weight: bold;
-  color: #eee;
-  /* Le contenu (texte) sera ajouté par JS */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252525; /* Fond encore plus sombre */
+  padding: 15px; /* Plus de padding */
+  border-radius: 6px;
 }
+
+/* Animation et affichage du dé */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.dice-animation { display: inline-block; animation: spin 0.8s linear infinite; font-size: 1.6em; margin-left: 10px; }
+.dice-result { display: inline-block; font-size: 1.6em; margin-right: 10px; vertical-align: middle; }
+/* Couleurs des dés */
+.roll-1::before { content: '⚀'; color: #ff6b6b; }
+.roll-2::before { content: '⚁'; color: #ff8c42; }
+.roll-3::before { content: '⚂'; color: #ffee6f; }
+.roll-4::before { content: '⚃'; color: #77dd77; }
+.roll-5::before { content: '⚄'; color: #77b5fe; }
+.roll-6::before { content: '⚅'; color: #bca0dc; }
+
 
 /* Navigation des choix */
 .choix {
-  margin-top: 30px;
-  margin-bottom: 25px;
-  padding-top: 20px;
-  border-top: 1px solid #555; /* Ligne avant les choix */
+    margin-top: 35px;
+    margin-bottom: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #4a4a4a; /* Séparateur plus discret */
 }
 
 .choix ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex; /* <<< AJOUT: Active Flexbox */
-  flex-wrap: wrap; /* <<< AJOUT: Permet le retour à la ligne */
-  gap: 15px; /* <<< AJOUT: Espace entre les éléments de choix (horizontal et vertical si wrap) */
-  /* Optionnel: alignement vertical si les éléments ont des hauteurs différentes */
-  /* align-items: center;  ou flex-start, stretch, baseline */
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 20px; /* Espace constant */
 }
+.choix li { margin-bottom: 0; flex-grow: 1; /* Permet aux boutons de grandir un peu */ }
 
-.choix li {
-  /* margin-bottom: 12px; <<< SUPPRIMER ou commenter cette ligne, 'gap' s'en charge */
-  /* Le li devient un 'flex item', pas besoin de style spécifique ici en général */
-}
-
-/* Style commun pour les liens texte et boutons de dé */
-.text-choice-link,
-.dice-roll-button {
-    /* display: block; <<< Garder block ou passer à inline-block si besoin, mais plus important: */
-    /* width: 100%; <<< SUPPRIMER ou commenter cette ligne */
-    padding: 10px 18px; /* Ajustez le padding si vous voulez des boutons moins larges */
-    background-color: #555;
-    color: #f4f4f4;
-    border: none;
-    border-radius: 5px;
+/* Style commun pour les choix (bouton/lien) */
+.text-choice-link, .dice-roll-button {
+    display: block;
+    width: 100%; /* Prend la largeur de son li */
+    padding: 14px 20px; /* Padding ajusté */
+    margin: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.05em; /* Légèrement plus grand */
+    font-weight: 600;
+    color: #f0f0f0;
+    background-color: #4a4a4a; /* Fond gris foncé */
+    border: 1px solid #666; /* Bordure subtile */
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1em;
-    font-family: inherit;
-    text-align: center; /* Centrer le texte dans le bouton peut être mieux */
+    text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    /* Ajouter une largeur minimale si vous voulez éviter des boutons trop petits */
-    /* min-width: 100px; */
+    transition: all 0.2s ease-out;
+    flex-shrink: 0;
+}
+.text-choice-link:hover, .dice-roll-button:hover {
+    background-color: #5a5a5a;
+    border-color: #888;
+    color: #fff;
+    transform: translateY(-2px); /* Léger soulèvement */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* Ombre au survol */
 }
 
-.text-choice-link:hover,
+/* Différenciation bouton dé */
+.dice-roll-button {
+    background-color: #c7773f; /* Orange plus sombre/terreux */
+    border-color: #e8491d;
+    color: #fff;
+}
 .dice-roll-button:hover {
-  background-color: #e8491d; /* Orange au survol */
-  color: #fff;
+    background-color: #e8491d; /* Orange vif au survol */
+    border-color: #ff8c42;
+}
+.dice-roll-button:disabled {
+  background-color: #555; border-color: #777; color: #aaa;
+  cursor: not-allowed; transform: none; box-shadow: none;
 }
 
-.dice-roll-button:active {
-   transform: scale(0.99); /* Effet clic */
-}
 
-/* Styles spécifiques pour les choix avec image */
+/* Style pour les choix par image */
 .image-choice-link {
-  display: inline-block; /* Ou block si vous voulez qu'ils prennent toute la largeur */
-  text-decoration: none;
+  display: block;
   border: 4px solid #555;
-  border-radius: 8px;
-  overflow: hidden; /* Important pour que le span ne déborde pas bizarrement */
-  transition: border-color 0.3s ease, transform 0.2s ease;
-  max-width: 200px;
-  vertical-align: top;
-  background-color: #444; /* Un fond pour le conteneur global du choix */
-  /* Suppression de margin-right car géré par 'gap' sur l'ul */
-  /* margin-bottom: 15px;  Peut être gardé si besoin d'espace vertical spécifique */
+  border-radius: 10px; /* Coins plus ronds */
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  width: 200px;
+  background-color: #3a3a3a;
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
-
 .image-choice-link:hover {
-  border-color: #e8491d;
-  transform: scale(1.05);
+    border-color: #ff8c42; /* Orange vif */
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
-
-/* --- Style existant pour l'image --- */
 .choice-image {
-  display: block; /* L'image prend la largeur du conteneur <a> */
-  width: 100%;
-  height: auto;
-  /* object-fit: cover; */
+  display: block; width: 100%; height: 140px; /* Un peu moins haut */
+  object-fit: cover;
 }
 
-/* === NOUVEAU / MODIFIÉ : Style pour le texte SOUS l'image === */
-.image-choice-text {
-  display: block;       /* Force le texte à aller sous l'image */
-  padding: 8px 10px;    /* Espace autour du texte */
-  text-align: center;   /* Centre le texte */
-  font-size: 0.9em;     /* Taille de police légèrement réduite */
-  color: #f0f0f0;       /* Couleur du texte */
-  background-color: #383838; /* Fond légèrement différent pour la zone texte (optionnel) */
-  line-height: 1.3;     /* Hauteur de ligne pour le texte */
-  min-height: 2.5em;    /* Hauteur minimale pour aligner si textes de longueurs différentes (ajuster) */
-  /* Supprimer toute règle de positionnement absolue ou de display:none par défaut */
-}
-
-/* Assurez-vous qu'il n'y a PAS de règle comme celle-ci qui cache le texte: */
-/* .image-choice-text { display: none; } */
-/* Ou comme celle-ci qui l'affiche seulement au survol: */
-/* .image-choice-link:hover .image-choice-text { display: block; } */
 
 /* Bloc de fin d'histoire */
 .fin {
-  margin-top: 40px;
-  padding: 25px;
-  border: 2px dashed #e8491d;
-  background-color: #3a3a3a;
-  border-radius: 5px;
-  text-align: center;
+    margin-top: 40px;
+    padding: 30px; /* Plus de padding */
+    border: none; /* Pas de bordure pointillée */
+    background-color: #2a2a2a; /* Fond plus sombre */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5); /* Ombre intérieure */
 }
-
 .fin p {
-  margin-bottom: 1em;
-  color: #f0f0f0;
-  font-size: 1.1em;
+    margin-bottom: 1em; color: #e0e0e0; font-size: 1.1em;
 }
-
 .fin strong {
-  color: #e8491d;
-  font-size: 1.3em;
-  display: block; /* Met le type sur sa propre ligne */
-  margin-bottom: 10px;
+    color: #ff8c42; /* Orange vif */
+    font-size: 1.4em; display: block; margin-bottom: 15px; font-weight: 700;
 }
-
-.fin a { /* Style du lien "Retourner à l'accueil" */
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 25px; /* Plus large */
-  background-color: #e8491d;
-  color: #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+.fin a {
+    display: inline-block; margin-top: 20px; padding: 12px 30px;
+    background-color: #ff8c42; color: #1a1a1a; /* Texte foncé */
+    border-radius: 6px; text-decoration: none; font-weight: 700;
+    transition: all 0.3s ease;
 }
-
 .fin a:hover {
-  background-color: #f05f3b;
-  color: #fff;
+    background-color: #ffa56b; transform: scale(1.05);
+}
+
+/* === Style Avertissement Local Storage (Accueil) === */
+.local-storage-warning {
+  font-size: 0.9em; /* Légèrement plus grand */
+  color: #bbb;
+  background-color: #3a3a3a; /* Fond harmonisé */
+  padding: 18px;
+  border-radius: 6px;
+  margin: 40px auto 0;
+  max-width: 95%;
+  text-align: center;
+  border: 1px solid #555;
+}
+.local-storage-warning strong { color: #ff8c42; } /* Orange */
+.local-storage-warning u {
+    text-decoration-style: wavy; text-decoration-color: #aaa;
+    text-decoration-thickness: 1px; text-underline-offset: 2px;
 }
 
 /* ===================================== */
