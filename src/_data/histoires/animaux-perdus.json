@@ -33,15 +33,15 @@
         ]
     },
     {
-        "id": "renard_aide",
-        "text": "Le renard prend l'os en remuant la queue. \"Merci ! Hmm, oui, le lapin est allé vers le grand chêne, près du ruisseau qui chante.\"",
-        "image": "renard_mange_os.jpg",
-        "choices": [
-            {
-                "text": "Le remercier et aller vers le chêne",
-                "target": "scene_3"
-            }
-        ]
+      "id": "renard_aide",
+      "text": "Le renard prend l'os en remuant la queue. \\\"Merci ! Hmm, oui, le lapin est allé vers le grand chêne, près du ruisseau qui chante.\\\"",
+      "image": "renard_mange_os.jpg",
+      "choices": [
+        {
+          "text": "Le remercier et aller vers le chêne",
+          "target": "chemin_vers_chene"
+        }
+      ]
     },
     {
         "id": "fuite_retour_depart",
@@ -115,6 +115,32 @@
           "icon": "❌",
           "message": "Fin tout cracra ! Mission échouée pour aujourd'hui."
         }
+    },
+    {
+      "id": "chemin_vers_chene",
+      "text": "Tu suis les indications du renard. Le sentier serpente entre les arbres et tu commences à entendre le doux murmure du ruisseau. Sur le chemin, un magnifique papillon aux ailes bleues scintillantes volette juste devant toi.",
+      "image": "papillon_chemin.jpg",
+      "choices": [
+        {
+          "text": "Continuer tout droit vers le ruisseau",
+          "target": "scene_3"
+        },
+        {
+          "text": "Essayer de suivre le papillon quelques instants",
+          "target": "papillon_detour"
+        }
+      ]
+    },
+    {
+      "id": "papillon_detour",
+      "text": "Tu suis le papillon bleu qui danse entre les fleurs sauvages. C'est très joli ! Après quelques instants, le papillon s'envole haut dans le ciel et disparaît. Tu te retrouves près du grand chêne, le ruisseau est juste là.",
+      "image": "papillon_envole.jpg",
+      "choices": [
+        {
+          "text": "Se concentrer et aller vers le ruisseau",
+          "target": "scene_3"
+        }
+      ]
     },
     {
         "id": "scene_3",
