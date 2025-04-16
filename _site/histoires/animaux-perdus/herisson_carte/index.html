@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu tapotes doucement le hérisson. Il ouvre un œil, grogne, mais voit la noisette. Il la croque avec un grand sourire ! &#92;&quot;Miam ! Merci petit ! Tiens, j&#39;ai fait cette carte, elle montre comment aller au grand ruisseau.&#92;&quot;</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/carte_detail/" class="text-choice-link">Regarder la carte de plus près</a>
+                            <a href="/histoires/animaux-perdus/carte_detail/"
+                                class="text-choice-link"
+                                >
+                                Regarder la carte de plus près
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

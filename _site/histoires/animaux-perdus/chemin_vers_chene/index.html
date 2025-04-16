@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu suis les indications du renard. Le sentier serpente entre les arbres et tu commences à entendre le doux murmure du ruisseau. Sur le chemin, un magnifique papillon aux ailes bleues scintillantes volette juste devant toi.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,14 +39,22 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_3/" class="text-choice-link">Continuer tout droit vers le ruisseau</a>
+                            <a href="/histoires/animaux-perdus/scene_3/"
+                                class="text-choice-link"
+                                >
+                                Continuer tout droit vers le ruisseau
+                            </a>
                         
                     </li>
                 
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/papillon_detour/" class="text-choice-link">Essayer de suivre le papillon quelques instants</a>
+                            <a href="/histoires/animaux-perdus/papillon_detour/"
+                                class="text-choice-link"
+                                >
+                                Essayer de suivre le papillon quelques instants
+                            </a>
                         
                     </li>
                 
@@ -58,6 +67,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

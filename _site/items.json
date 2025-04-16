@@ -1,0 +1,15 @@
+{
+    "plume_irisee": {
+      "name": "Plume Irisée",
+      "description": "Une magnifique plume qui brille aux couleurs de l'arc-en-ciel."
+    },
+    "cle_rouillee": {
+      "name": "Clé Rouillée",
+      "description": "Une vieille clé en fer, couverte de rouille. Peut-être ouvre-t-elle quelque chose ?"
+    },
+    "noisette_doree": {
+        "name": "Noisette Dorée",
+        "description": "Une noisette qui semble briller d'une douce lumière dorée."
+    }
+    
+  }

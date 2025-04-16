@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>En essayant de te frayer un chemin, tes pattes s&#39;emmêlent dans des vignes tenaces qui pendent des arbres ! Il te faut un petit moment pour te libérer en tirant doucement.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/depart/" class="text-choice-link">Ouf ! Retourner au début du sentier maintenant.</a>
+                            <a href="/histoires/animaux-perdus/depart/"
+                                class="text-choice-link"
+                                >
+                                Ouf ! Retourner au début du sentier maintenant.
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

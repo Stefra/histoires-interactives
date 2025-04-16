@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu prends une grande inspiration et PFFFFF ! Tu souffles si fort que quelques bulles éclatent, libérant un écureuil et un oiseau ! Mais une chouette fâchée descend en piqué. &quot;Comment oses-tu utiliser la force brute ?! Pour ta leçon, COA !&quot; D&#39;un coup de baguette, elle te transforme en petite grenouille verte !</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -45,6 +46,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

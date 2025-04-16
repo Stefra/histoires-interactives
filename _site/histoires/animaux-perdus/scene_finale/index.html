@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Que tu aies retrouvé Léo près du ruisseau ou que la chouette ait libéré tout le monde, la mission est un succès ! Tu rentres à la maison avec tous tes amis retrouvés. Ils sont si heureux de te voir ! Ils organisent une grande fête avec des gâteaux aux carottes et des jeux. Mia la chatte ronronne sur tes genoux et Léo te fait un câlin.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -32,19 +33,50 @@
 
     
     
+        <nav class="choix">
+            <ul>
+                
+                    <li>
+                        
+                        
+                            <a href="/histoires/animaux-perdus/fin_reussie_simple/"
+                                class="text-choice-link"
+                                >
+                                Profiter de la fête bien méritée !
+                            </a>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        
+                            <a href="/histoires/animaux-perdus/fin_reussie_plume/"
+                                class="text-choice-link"
+                                data-requires-item="plume_irisee">
+                                Montrer la Plume Irisée à tes amis
+                            </a>
+                        
+                    </li>
+                
+            </ul>
+        </nav>
+    
 
     
-    
-        
-        <div class="fin" data-ending-type="Réussie">
-            <p><strong>Réussie 🏅</strong></p>
-            <p>Bravo ! Tu es déclaré le plus courageux des chiens détectives !</p>
-            <p><a href="/">Retourner à l'accueil</a></p>
-        </div>
     
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

@@ -7,6 +7,8 @@ module.exports = function(eleventyConfig) {
     // Dit à Eleventy de copier le dossier 'src/js' vers '_site/js'
     eleventyConfig.addPassthroughCopy("src/js");
 
+    eleventyConfig.addPassthroughCopy({ "src/_data/items.json": "items.json" });
+
     // Création d'une collection "allStorySteps"
     eleventyConfig.addCollection("allStorySteps", function(collectionApi) {
     let allSteps = []; // Une liste vide pour ranger toutes les étapes

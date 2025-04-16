@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu déplies la petite carte dessinée avec des pattes. Elle montre un gros chêne près d&#39;une eau qui coule. Tu remarques aussi un petit dessin de fleur près d&#39;un rocher sur le côté du chemin principal.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,14 +39,22 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_3/" class="text-choice-link">Suivre la direction du grand chêne et du ruisseau</a>
+                            <a href="/histoires/animaux-perdus/scene_3/"
+                                class="text-choice-link"
+                                >
+                                Suivre la direction du grand chêne et du ruisseau
+                            </a>
                         
                     </li>
                 
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/rocher_fleur/" class="text-choice-link">Aller jeter un œil au rocher avec la fleur</a>
+                            <a href="/histoires/animaux-perdus/rocher_fleur/"
+                                class="text-choice-link"
+                                >
+                                Aller jeter un œil au rocher avec la fleur
+                            </a>
                         
                     </li>
                 
@@ -58,6 +67,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

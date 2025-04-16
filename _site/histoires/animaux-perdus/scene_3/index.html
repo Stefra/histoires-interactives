@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu arrives près d&#39;un ruisseau qui murmure joyeusement. Pour continuer, il faut traverser sur un vieux tronc d&#39;arbre couvert de mousse. Il a l&#39;air un peu glissant !</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -40,7 +41,8 @@
                         
                             <button class="dice-roll-button"
                                     data-story-id="animaux-perdus"
-                                    data-outcomes='[{"rolls":[1,2,3],"description":"Splash !","target":"sortir_eau_mouille"},{"rolls":[4,5,6],"description":"Bien joué !","target":"scene_4b"}]'> 
+                                    data-outcomes='[{"rolls":[1,2,3],"description":"Splash !","target":"sortir_eau_mouille"},{"rolls":[4,5,6],"description":"Bien joué !","target":"scene_4b"}]' 
+                                    >
                                 🎲 Tenter de traverser sur le tronc (Équilibre : Lancer 1D6)
                             </button>
 
@@ -51,7 +53,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/autre_passage_ruisseau/" class="text-choice-link">Chercher un autre passage ?</a>
+                            <a href="/histoires/animaux-perdus/autre_passage_ruisseau/"
+                                class="text-choice-link"
+                                >
+                                Chercher un autre passage ?
+                            </a>
                         
                     </li>
                 
@@ -64,6 +70,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

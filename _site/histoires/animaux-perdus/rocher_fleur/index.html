@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" data-grants-item="plume_irisee">
     
     <p>Tu fais un petit détour vers le rocher indiqué sur la carte. Près d&#39;une jolie fleur bleue, tu trouves une magnifique plume brillante aux couleurs de l&#39;arc-en-ciel ! Tu la ramasses précieusement.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_3/" class="text-choice-link">Mettre la plume en sécurité et aller vers le ruisseau</a>
+                            <a href="/histoires/animaux-perdus/scene_3/"
+                                class="text-choice-link"
+                                >
+                                Mettre la plume en sécurité et aller vers le ruisseau
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

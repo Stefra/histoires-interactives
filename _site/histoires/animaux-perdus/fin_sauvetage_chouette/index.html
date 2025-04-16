@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu tires doucement sur la corde et la cloche en bois émet un son doux et mélodieux. Aussitôt, une grande chouette aux plumes argentées descend d&#39;un arbre. &quot;Tu as choisi la sagesse, petit chien,&quot; dit-elle d&#39;une voix douce. &quot;Je vois que tu as bon cœur.&quot; D&#39;un battement d&#39;ailes, elle fait éclater toutes les bulles !</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_finale/" class="text-choice-link">Merci Madame Chouette !</a>
+                            <a href="/histoires/animaux-perdus/scene_finale/"
+                                class="text-choice-link"
+                                >
+                                Merci Madame Chouette !
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

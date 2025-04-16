@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Gloups ! Te voilà dans l&#39;eau ! Elle est froide et te mouille jusqu&#39;aux oreilles. Tu barbotes vite jusqu&#39;à la rive et tu te hisses sur l&#39;herbe, tout dégoulinant et grelottant un peu.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_4a/" class="text-choice-link">S&#39;ébrouer pour se sécher</a>
+                            <a href="/histoires/animaux-perdus/scene_4a/"
+                                class="text-choice-link"
+                                >
+                                S&#39;ébrouer pour se sécher
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

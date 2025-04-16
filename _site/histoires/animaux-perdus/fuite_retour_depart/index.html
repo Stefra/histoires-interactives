@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu te précipites dans les buissons touffus ! Après avoir couru un moment, tu te rends compte que tu tournes en rond...</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/vignes_accrocheuses/" class="text-choice-link">Essayer de retrouver le chemin...</a>
+                            <a href="/histoires/animaux-perdus/vignes_accrocheuses/"
+                                class="text-choice-link"
+                                >
+                                Essayer de retrouver le chemin...
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

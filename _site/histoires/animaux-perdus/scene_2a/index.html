@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Un renard roux sourit près du chemin de terre. &quot;Tu cherches tes amis ? Hmm, j’ai peut-être vu un lapin filer par là…&quot; dit-il avec un air malicieux.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/renard_aide/" class="image-choice-link" title="Lui offrir un os pour qu’il t’aide">
+                            <a href="/histoires/animaux-perdus/renard_aide/"
+                                class="image-choice-link"
+                                title="Lui offrir un os pour qu’il t’aide"
+                                >
+
                                 <img src="/images/choix_os.jpg" alt="Lui offrir un os pour qu’il t’aide" class="choice-image">
                                 <span class="image-choice-text">Lui offrir un os pour qu’il t’aide</span>
                             </a>
@@ -50,7 +55,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/fuite_retour_depart/" class="image-choice-link" title="T’enfuir vite dans les buissons">
+                            <a href="/histoires/animaux-perdus/fuite_retour_depart/"
+                                class="image-choice-link"
+                                title="T’enfuir vite dans les buissons"
+                                >
+
                                 <img src="/images/choix_pattes_fuite.jpg" alt="T’enfuir vite dans les buissons" class="choice-image">
                                 <span class="image-choice-text">T’enfuir vite dans les buissons</span>
                             </a>
@@ -68,6 +77,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

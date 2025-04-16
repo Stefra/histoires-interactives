@@ -1,118 +1,213 @@
-// Attend que toute la page HTML soit chargée
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Gestion du Lancer de Dé (Version Améliorée) ---
+
+    const inventoryToggleButton = document.getElementById('inventory-toggle');
+    const inventoryPanel = document.getElementById('inventory-panel');
+    const inventoryList = document.getElementById('inventory-list');
+    const inventoryCloseButton = document.getElementById('inventory-close');
+    let globalItemsData = null;
+
+ 
+    async function fetchItemsData() {
+      if (!globalItemsData) {
+          try {
+              const response = await fetch('/items.json'); 
+              if (!response.ok) throw new Error('Network response was not ok');
+              globalItemsData = await response.json();
+              console.log("Items data loaded:", globalItemsData);
+          } catch (error) {
+              console.error('Impossible de charger items.json:', error);
+              globalItemsData = {}; 
+          }
+      }
+      return globalItemsData;
+    }
+    
+     fetchItemsData();
+
+    
+    function getCurrentInventory(storyId) {
+        const storageKey = `storyData_${storyId}`;
+        try {
+            const storedDataString = localStorage.getItem(storageKey);
+            if (storedDataString) {
+                const storedData = JSON.parse(storedDataString);
+                
+                return Array.isArray(storedData.inventory) ? storedData.inventory : [];
+            }
+        } catch (e) {
+            console.error("Erreur lecture inventaire depuis LocalStorage:", e);
+        }
+        return []; 
+    }
+
+    
+    function saveData(storyId, stepId, status, inventory) {
+        const storageKey = `storyData_${storyId}`;
+        const dataToStore = {
+            lastStep: stepId,
+            status: status,
+            inventory: Array.isArray(inventory) ? inventory : [] 
+        };
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(dataToStore));
+            console.log(`Données sauvegardées: Histoire ${storyId}`, dataToStore);
+        } catch (e) {
+            console.error("Erreur sauvegarde LocalStorage:", e);
+        }
+    }
+
+    
+    if (inventoryToggleButton && inventoryPanel && inventoryCloseButton && inventoryList) {
+        inventoryToggleButton.addEventListener('click', async () => {
+            const items = await fetchItemsData(); 
+            const pathParts = window.location.pathname.split('/').filter(part => part !== '');
+            let currentInventory = [];
+            
+            if (pathParts.length === 3 && pathParts[0] === 'histoires') {
+                 currentInventory = getCurrentInventory(pathParts[1]);
+            } else {
+                
+                 console.log("Bouton inventaire cliqué hors page d'histoire.");
+                
+            }
+
+
+            
+            inventoryList.innerHTML = ''; 
+            if (currentInventory.length > 0) {
+                currentInventory.forEach(itemId => {
+                    const itemInfo = items[itemId];
+                    if (itemInfo) {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${itemInfo.name || itemId}</strong>: ${itemInfo.description || 'Aucune description'}`;
+                        inventoryList.appendChild(li);
+                    } else {
+                         const li = document.createElement('li');
+                         li.textContent = itemId; 
+                         inventoryList.appendChild(li);
+                    }
+                });
+            } else {
+                inventoryList.innerHTML = '<li>Votre sac à dos est vide.</li>';
+            }
+
+            
+            inventoryPanel.classList.toggle('hidden');
+        });
+
+        inventoryCloseButton.addEventListener('click', () => {
+            inventoryPanel.classList.add('hidden');
+        });
+    } else {
+       
+       if(inventoryToggleButton) inventoryToggleButton.style.display = 'none';
+    }
+
+
+    
     const diceButtons = document.querySelectorAll('.dice-roll-button');
     const diceResultArea = document.getElementById('dice-result-area');
-    if (diceResultArea) {
+    if (diceResultArea && diceButtons.length > 0) { 
         diceButtons.forEach(button => {
-            button.addEventListener('click', () => { // Début event listener bouton dé
-
-                button.disabled = true;
+            button.addEventListener('click', () => {
+                
+                 button.disabled = true;
                 const storyId = button.dataset.storyId;
                 const outcomesString = button.dataset.outcomes;
-
-                if (!storyId || !outcomesString) {
-                    diceResultArea.textContent = "Erreur : Configuration du bouton (storyId ou outcomes) manquante.";
-                    console.error("Attributs data-story-id ou data-outcomes manquants:", button.dataset);
-                    return;
-                }
-
-                let outcomes;
-                try {
-                    outcomes = JSON.parse(outcomesString);
-                } catch (e) {
-                    diceResultArea.textContent = "Erreur : Impossible de lire les résultats possibles (JSON invalide).";
-                    console.error("Erreur parsing JSON pour outcomes:", outcomesString, e);
-                    return;
-                }
-
-                if (!Array.isArray(outcomes) || outcomes.length === 0) {
-                    diceResultArea.textContent = "Erreur : Aucun résultat possible défini pour ce lancer.";
-                    console.error("La structure 'outcomes' est vide ou n'est pas un tableau:", outcomes);
-                    return;
-                }
-
+                if (!storyId || !outcomesString) { /*...*/ return; }
+                let outcomes; try { outcomes = JSON.parse(outcomesString); } catch (e) { /*...*/ return; }
+                if (!Array.isArray(outcomes) || outcomes.length === 0) { /*...*/ return; }
                 diceResultArea.innerHTML = "Lancement du dé... <span class='dice-animation'>🎲</span>";
-
-                setTimeout(() => { // Délai avant lancer
+                setTimeout(() => {
                     const roll = Math.floor(Math.random() * 6) + 1;
-                    let targetStepId = null;
-                    let resultDescription = "";
-
-                    const matchingOutcome = outcomes.find(outcome =>
-                        Array.isArray(outcome.rolls) && outcome.rolls.includes(roll)
-                    );
-
+                    let targetStepId = null; let resultDescription = "";
+                    const matchingOutcome = outcomes.find(o => Array.isArray(o.rolls) && o.rolls.includes(roll));
                     if (matchingOutcome) {
-                        targetStepId = matchingOutcome.target;
-                        resultDescription = matchingOutcome.description || "";
-                        if (!targetStepId) {
-                             diceResultArea.textContent = `Erreur : Résultat ${roll} (${resultDescription}) trouvé, mais pas de cible définie.`;
-                             console.error("Aucune 'target' définie pour l'outcome correspondant au jet:", roll, matchingOutcome);
-                             return;
-                        }
-                    } else {
-                        diceResultArea.textContent = `Erreur : Aucun résultat défini pour le jet ${roll} ! Vérifiez la configuration.`;
-                        console.error("Aucun outcome trouvé pour le jet:", roll, "dans outcomes:", outcomes);
-                        return;
-                    }
-
+                        targetStepId = matchingOutcome.target; resultDescription = matchingOutcome.description || "";
+                        if (!targetStepId) { /*...*/ return; }
+                    } else { /*...*/ return; }
                     let resultMessage = `Résultat : <span class="dice-result roll-${roll}"></span> ${roll}`;
-                    if (resultDescription) {
-                        resultMessage += ` (${resultDescription})`;
-                    }
+                    if (resultDescription) { resultMessage += ` (${resultDescription})`; }
                     diceResultArea.innerHTML = resultMessage;
+                    setTimeout(() => { const nextPageUrl = `/histoires/${storyId}/${targetStepId}/`; window.location.href = nextPageUrl; }, 1800);
+                }, 1000);
+            });
+        });
+    }
 
-                    setTimeout(() => { // Délai avant redirection
-                        const nextPageUrl = `/histoires/${storyId}/${targetStepId}/`;
-                        window.location.href = nextPageUrl;
-                    }, 1800); // Fin délai redirection
-
-                }, 1000); // Fin délai avant lancer
-            }); // Fin event listener bouton dé
-        }); // Fin forEach bouton dé
-    } // Fin if (diceResultArea)
-
-    // --- Sauvegarde de Progression (Version 3: avec statut Neutre) ---
+    
     const storyContainer = document.querySelector('.etape-contenu');
     if (storyContainer) {
         const pathParts = window.location.pathname.split('/').filter(part => part !== '');
         if (pathParts.length === 3 && pathParts[0] === 'histoires') {
             const currentStoryId = pathParts[1];
             const currentStepId = pathParts[2];
-            const storageKey = `storyData_${currentStoryId}`;
+
+            
+            let inventory = getCurrentInventory(currentStoryId);
+
+            
+            const grantedItem = storyContainer.dataset.grantsItem;
+            const pickupMessageDiv = document.getElementById('item-pickup-message');
+
+            if (grantedItem && !inventory.includes(grantedItem)) {
+                inventory.push(grantedItem); 
+                
+                if (pickupMessageDiv) {
+                   fetchItemsData().then(items => { 
+                       const itemInfo = items[grantedItem];
+                       pickupMessageDiv.textContent = `✨ Objet trouvé : ${itemInfo ? itemInfo.name : grantedItem} ! Ajouté au sac à dos.`;
+                   });
+                }
+            } else if (pickupMessageDiv) {
+                 pickupMessageDiv.textContent = ''; 
+            }
+
+
+            
             let currentStatus = 'in_progress';
             const endingDiv = document.querySelector('.fin');
             if (endingDiv) {
                 const endingType = endingDiv.dataset.endingType;
-                if (endingType === 'Réussie' || endingType === 'À suivre') {
-                    currentStatus = 'completed';
-                } else if (endingType === 'Échec') {
-                    currentStatus = 'lost';
-                } else if (endingType === 'Neutre') {
-                    currentStatus = 'finished_neutral';
-                }
+                if (endingType === 'Réussie' || endingType === 'À suivre') { currentStatus = 'completed'; }
+                else if (endingType === 'Échec') { currentStatus = 'lost'; }
+                else if (endingType === 'Neutre') { currentStatus = 'finished_neutral'; }
             }
-            const dataToStore = { lastStep: currentStepId, status: currentStatus };
-            try {
-                localStorage.setItem(storageKey, JSON.stringify(dataToStore));
-                console.log(`Données sauvegardées: Histoire ${currentStoryId}`, dataToStore);
-            } catch (e) {
-                console.error("Erreur lors de la sauvegarde dans le Local Storage:", e);
-            }
-        }
-    }
 
-    // --- Logique pour la Page d'Accueil (Mise à jour Statut/Bouton ET Filtres) ---
+            
+            saveData(currentStoryId, currentStepId, currentStatus, inventory);
+
+            
+            const choiceElements = document.querySelectorAll('.choix li > *'); 
+             choiceElements.forEach(choice => {
+                 const requiredItem = choice.dataset.requiresItem;
+                 if (requiredItem) {
+                     if (!inventory.includes(requiredItem)) {
+                         
+                         choice.style.display = 'none'; 
+                         
+                         console.log(`Choix masqué car l'objet '${requiredItem}' est manquant.`);
+                     } else {
+                          
+                          choice.style.display = '';
+                     }
+                 }
+             });
+
+        }
+    } 
+
+    
     const storyListContainer = document.querySelector('.story-list');
     const filterContainer = document.querySelector('.category-filters');
-    let storyCards = []; // Défini en dehors pour être accessible par les deux parties
+    let storyCards = [];
     if (storyListContainer) {
       storyCards = storyListContainer.querySelectorAll('.story-card');
     }
 
-    // 1. Mise à jour du statut et des boutons
+    
     if (storyListContainer && storyCards.length > 0) {
         storyCards.forEach(card => {
             const storyId = card.dataset.storyId;
@@ -120,12 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const statusDisplay = card.querySelector('.story-status');
             const startStepId = card.dataset.startStep;
 
-            if (!storyId || !storyLink || !statusDisplay || !startStepId) { return; } // Simplifié
+            if (!storyId || !storyLink || !statusDisplay || !startStepId) { return; }
 
             const storageKey = `storyData_${storyId}`;
             try {
                 const storedDataString = localStorage.getItem(storageKey);
                 let lastStep = null; let status = null;
+
                 if (storedDataString) {
                     try { const storedData = JSON.parse(storedDataString); lastStep = storedData.lastStep; status = storedData.status; }
                     catch (parseError) { console.error(`Erreur parsing JSON pour ${storyId}:`, parseError); }
@@ -139,24 +235,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (status === 'completed' || status === 'lost' || status === 'finished_neutral') {
                     storyLink.textContent = 'Recommencer'; storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`); storyLink.classList.remove('resume-link');
                 } else if (lastStep && lastStep !== startStepId) {
-                    storyLink.textContent = 'Reprendre l\'aventure'; storyLink.setAttribute('href', `/histoires/${storyId}/${lastStep}/`); storyLink.classList.add('resume-link');
+                    storyLink.textContent = "Reprendre l'aventure";
+                    storyLink.setAttribute('href', `/histoires/${storyId}/${lastStep}/`); 
+                    storyLink.classList.add('resume-link');
                 } else {
-                    storyLink.textContent = 'Commencer l\'aventure'; storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`); storyLink.classList.remove('resume-link');
+                    storyLink.textContent = "Commencer l'aventure"; storyLink.setAttribute('href', `/histoires/${storyId}/${startStepId}/`); storyLink.classList.remove('resume-link');
                 }
-            } catch (e) { console.error("Erreur lors de la lecture/mise à jour de la progression:", e); }
+            } catch (e) { console.error("Erreur lecture/màj progression accueil:", e); }
         });
 
-        // 2. Ajout de l'avertissement Local Storage
         const warningElement = document.querySelector('.local-storage-warning');
-        if (!warningElement) {
+        if (storyListContainer && !warningElement) {
             const newWarning = document.createElement('p');
             newWarning.classList.add('local-storage-warning');
-            newWarning.innerHTML = `<strong>Attention :</strong> Votre progression est sauvegardée uniquement sur <u>cet appareil</u> et dans <u>ce navigateur</u>...`;
+            newWarning.innerHTML = `<strong>Attention :</strong> Votre progression et votre inventaire sont sauvegardés uniquement sur <u>cet appareil</u> et dans <u>ce navigateur</u>.`;
             storyListContainer.insertAdjacentElement('afterend', newWarning);
         }
     }
 
-    // 3. Mise en place des Filtres de Catégorie
     if (filterContainer && storyCards.length > 0) {
         const filterButtons = filterContainer.querySelectorAll('.filter-button');
         filterButtons.forEach(button => {
@@ -164,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filterValue = button.dataset.filter;
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                storyCards.forEach(card => { // Utilise storyCards défini plus haut
+                storyCards.forEach(card => {
                     const cardCategory = card.dataset.category;
                     if (filterValue === 'all' || cardCategory === filterValue) { card.style.display = ''; }
                     else { card.style.display = 'none'; }
@@ -173,4 +269,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-}); // Fin de l'écouteur DOMContentLoaded
+});

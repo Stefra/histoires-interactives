@@ -18,11 +18,12 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu es Milo, un petit chien curieux et courageux. Ce matin, quand tu te réveilles dans ta niche, tous tes amis animaux ont disparu ! Plus de Mia la chatte, ni de Léo le lapin… Que s’est-il passé ? Tu mets ta truffe au travail et pars explorer la forêt pour les retrouver !
 
 Tu arrives au bord de la forêt. Deux chemins s’offrent à toi :</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -40,14 +41,22 @@ Tu arrives au bord de la forêt. Deux chemins s’offrent à toi :</p>
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_2a/" class="text-choice-link">🟢 Suivre le chemin de terre</a>
+                            <a href="/histoires/animaux-perdus/scene_2a/"
+                                class="text-choice-link"
+                                >
+                                🟢 Suivre le chemin de terre
+                            </a>
                         
                     </li>
                 
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/tunnel_buissons_interieur/" class="text-choice-link">🍃 Passer par le tunnel de buissons</a>
+                            <a href="/histoires/animaux-perdus/tunnel_buissons_interieur/"
+                                class="text-choice-link"
+                                >
+                                🍃 Passer par le tunnel de buissons
+                            </a>
                         
                     </li>
                 
@@ -60,6 +69,16 @@ Tu arrives au bord de la forêt. Deux chemins s’offrent à toi :</p>
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu laisses le hérisson tranquille et t&#39;enfonces plus loin. Mais attention ! Tu glisses et... PLOUF ! Tu tombes dans une grosse flaque de boue collante. Beurk ! Tu es trop sale pour continuer, il faut rentrer prendre un bain.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -45,6 +46,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

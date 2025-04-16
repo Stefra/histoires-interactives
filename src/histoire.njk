@@ -12,9 +12,10 @@ eleventyComputed:
 {# Titre principal de la page - utilise aussi le titre de l'histoire #}
 <h1>{{ step.storyTitle }}</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" {% if step.grantsItem %}data-grants-item="{{ step.grantsItem }}"{% endif %}>
     {# Affiche le texte de l'étape #}
     <p>{{ step.text }}</p>
+    <div id="item-pickup-message"></div>
 
     {# Affiche l'image de l'étape si elle existe #}
     {% if step.image %}
@@ -32,7 +33,11 @@ eleventyComputed:
                     <li>
                         {# === Vérifie si c'est un choix avec image === #}
                         {% if choix.choiceImage %}
-                            <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="image-choice-link" title="{{ choix.text }}">
+                            <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/"
+                                class="image-choice-link"
+                                title="{{ choix.text }}"
+                                {% if choix.requiresItem %}data-requires-item="{{ choix.requiresItem }}"{% endif %}>
+
                                 <img src="/images/{{ choix.choiceImage }}" alt="{{ choix.text }}" class="choice-image">
                                 <span class="image-choice-text">{{ choix.text }}</span>
                             </a>
@@ -41,13 +46,18 @@ eleventyComputed:
                         {% elif choix.type == "dice" %}
                             <button class="dice-roll-button"
                                     data-story-id="{{ step.storyId }}"
-                                    data-outcomes='{{ choix.outcomes | dump | safe }}'> {# Stocke outcomes en JSON #}
+                                    data-outcomes='{{ choix.outcomes | dump | safe }}' {# Stocke outcomes en JSON #}
+                                    {% if choix.requiresItem %}data-requires-item="{{ choix.requiresItem }}"{% endif %}>
                                 {{ choix.text }}
                             </button>
 
                         {# === Sinon, c'est un choix texte normal === #}
                         {% else %}
-                            <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/" class="text-choice-link">{{ choix.text }}</a>
+                            <a href="/histoires/{{ step.storyId }}/{{ choix.target }}/"
+                                class="text-choice-link"
+                                {% if choix.requiresItem %}data-requires-item="{{ choix.requiresItem }}"{% endif %}>
+                                {{ choix.text }}
+                            </a>
                         {% endif %}
                     </li>
                 {% endfor %}

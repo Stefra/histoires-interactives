@@ -17,6 +17,16 @@
         {{ content | safe }}
     </main>
 
+    {# Bouton et Panneau d'Inventaire #}
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            {# Le JS remplira cette liste #}
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
+
     {# Charge notre fichier JavaScript principal #}
     <script src="/js/main.js" defer></script>
     

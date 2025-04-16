@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Tu suis le papillon bleu qui danse entre les fleurs sauvages. C&#39;est très joli ! Après quelques instants, le papillon s&#39;envole haut dans le ciel et disparaît. Tu te retrouves près du grand chêne, le ruisseau est juste là.</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/scene_3/" class="text-choice-link">Se concentrer et aller vers le ruisseau</a>
+                            <a href="/histoires/animaux-perdus/scene_3/"
+                                class="text-choice-link"
+                                >
+                                Se concentrer et aller vers le ruisseau
+                            </a>
                         
                     </li>
                 
@@ -51,6 +56,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>

@@ -18,9 +18,10 @@
 
 <h1>🐶 La mission des animaux perdus</h1>
 
-<div class="etape-contenu">
+<div class="etape-contenu" >
     
     <p>Bravo ! Tu as traversé le tronc comme un champion. De l&#39;autre côté, tu découvres une magnifique clairière baignée de lumière. Mais... horreur ! Plusieurs animaux, dont Mia la chatte, sont enfermés dans de grosses bulles brillantes qui flottent doucement. Que vas-tu faire pour les libérer ?</p>
+    <div id="item-pickup-message"></div>
 
     
     
@@ -38,7 +39,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/fin_sauvetage_chouette/" class="image-choice-link" title="Faire sonner une cloche en bois suspendue à un arbre">
+                            <a href="/histoires/animaux-perdus/fin_sauvetage_chouette/"
+                                class="image-choice-link"
+                                title="Faire sonner une cloche en bois suspendue à un arbre"
+                                >
+
                                 <img src="/images/choix_cloche.jpg" alt="Faire sonner une cloche en bois suspendue à un arbre" class="choice-image">
                                 <span class="image-choice-text">Faire sonner une cloche en bois suspendue à un arbre</span>
                             </a>
@@ -50,7 +55,11 @@
                     <li>
                         
                         
-                            <a href="/histoires/animaux-perdus/fin_grenouille/" class="image-choice-link" title="Souffler de toutes tes forces sur les bulles">
+                            <a href="/histoires/animaux-perdus/fin_grenouille/"
+                                class="image-choice-link"
+                                title="Souffler de toutes tes forces sur les bulles"
+                                >
+
                                 <img src="/images/choix_souffle.jpg" alt="Souffler de toutes tes forces sur les bulles" class="choice-image">
                                 <span class="image-choice-text">Souffler de toutes tes forces sur les bulles</span>
                             </a>
@@ -68,6 +77,16 @@
 
 </div>
     </main>
+
+    
+    <button id="inventory-toggle" title="Inventaire">🎒</button>
+    <div id="inventory-panel" class="hidden">
+        <h2>Sac à Dos</h2>
+        <ul id="inventory-list">
+            
+        </ul>
+        <button id="inventory-close">Fermer</button>
+    </div>
 
     
     <script src="/js/main.js" defer></script>
