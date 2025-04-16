@@ -6,6 +6,13 @@
       "coverImage": "animaux-perdus-cover.jpg",
       "startStepId": "depart",
       "ageCategory": "6-9 ans"
+    },
+    {
+      "id": "labo-secret",
+      "title": "🧪 Le labo secret",
+      "description": "Explorez le laboratoire abandonné de votre oncle Victor et découvrez ses mystérieuses expériences. Vos choix détermineront votre destin !",
+      "coverImage": "labo-secret-cover.jpg",
+      "startStepId": "introduction",
+      "ageCategory": "10-12 ans"
     }
-    
   ]
