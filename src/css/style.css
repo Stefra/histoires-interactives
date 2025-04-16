@@ -415,5 +415,118 @@ main > p { /* Intro Accueil */
 }
 
 /* ===================================== */
+/* ===   Design Adaptatif (Responsive) === */
+/* ===================================== */
+
+/* --- Pour Tablettes et Écrans Moyens (par exemple, moins de 992px) --- */
+@media (max-width: 991.98px) {
+    main {
+        max-width: 95%; /* Prend plus de largeur relative */
+        padding: 25px 25px; /* Un peu moins de padding horizontal */
+    }
+
+    .etape-contenu {
+         padding: 25px 30px; /* Un peu moins de padding */
+    }
+
+    /* On peut légèrement réduire la taille des titres si besoin */
+    main > h1 { font-size: 2.4em; }
+    .etape-contenu h1 { font-size: 1.9em; }
+}
+
+/* --- Pour Mobiles (par exemple, moins de 768px) --- */
+@media (max-width: 767.98px) {
+    body {
+        padding: 5px 0; /* Encore moins de padding body */
+    }
+
+    main {
+        margin: 20px auto; /* Moins de marge verticale */
+        padding: 20px 15px; /* Moins de padding */
+        border-radius: 6px; /* Coins moins arrondis */
+    }
+
+    main > h1 { font-size: 2em; } /* Titre accueil plus petit */
+    main > p { font-size: 1em; margin-bottom: 30px; } /* Intro accueil */
+
+    .etape-contenu {
+         max-width: 95%; /* Prend quasi toute la largeur */
+         padding: 20px 20px; /* Moins de padding */
+         margin: 20px auto;
+         border-top-width: 4px; /* Ligne orange un peu moins épaisse */
+    }
+    .etape-contenu h1 { font-size: 1.7em; margin-bottom: 20px; }
+    .etape-contenu > p { font-size: 1em; line-height: 1.6; } /* Texte étape taille normale */
+
+    .etape-contenu img {
+        max-width: 100%; /* L'image peut prendre toute la largeur */
+        max-height: 35vh; /* Hauteur max réduite */
+        margin: 20px auto;
+    }
+
+    /* Liste des histoires : déjà responsive grâce à auto-fit, mais réduisons l'écart */
+    .story-list {
+        gap: 20px;
+    }
+
+    /* Choix dans l'histoire */
+    .choix ul {
+        gap: 15px; /* Moins d'espace entre les choix */
+    }
+    .text-choice-link, .dice-roll-button {
+        padding: 12px 15px; /* Boutons légèrement plus petits */
+        font-size: 0.95em;
+    }
+    .image-choice-link {
+        width: 150px; /* Images de choix plus petites */
+        border-width: 3px;
+    }
+    .choice-image {
+        height: 100px; /* Hauteur image choix réduite */
+    }
+
+    /* Zone résultat dé */
+    #dice-result-area { font-size: 1.1em; }
+    .dice-animation, .dice-result { font-size: 1.3em; }
+
+    /* Boutons filtres */
+    .filter-button { padding: 6px 12px; font-size: 0.85em; margin: 3px 5px;}
+
+    /* Avertissement Local Storage */
+    .local-storage-warning { font-size: 0.8em; padding: 12px; margin-top: 30px; }
+}
+
+/* --- Pour Très Petits Mobiles (par exemple, moins de 480px) --- */
+@media (max-width: 479.98px) {
+    main {
+         padding: 15px 10px; /* Encore moins de padding */
+         margin: 15px auto;
+         border-radius: 4px;
+    }
+     main > h1 { font-size: 1.8em; } /* Titre accueil */
+     main > p { font-size: 0.95em; } /* Intro accueil */
+
+    .etape-contenu {
+         padding: 15px 15px;
+         margin: 15px auto;
+    }
+     .etape-contenu h1 { font-size: 1.5em; }
+     .etape-contenu > p { font-size: 0.95em; }
+
+    .story-list { gap: 15px; } /* Moins d'écart entre cartes */
+    .story-card { border-radius: 6px; }
+    .story-content { padding: 15px; }
+    .story-title { font-size: 1.2em; }
+    .story-description { font-size: 0.85em; }
+    .story-link { padding: 8px 12px; font-size: 0.9em;}
+
+    .choix ul { gap: 10px; }
+    .text-choice-link, .dice-roll-button { padding: 10px 12px; font-size: 0.9em;}
+    .image-choice-link { width: 120px; } /* Images choix encore plus petites */
+    .choice-image { height: 80px; }
+
+}
+
+/* ===================================== */
 /* ===   Fin du Fichier CSS          === */
 /* ===================================== */
