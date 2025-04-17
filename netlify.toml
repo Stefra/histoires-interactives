@@ -1,0 +1,17 @@
+# Fichier netlify.toml
+
+[build]
+  # Commande pour construire le site (inchangée)
+  command = "npx @11ty/eleventy"
+  # Dossier publié (inchangé)
+  publish = "_site"
+  # Dossier où se trouvent nos fonctions Netlify
+  functions = "netlify/functions"
+
+# Configuration pour le développement local avec 'netlify dev'
+[dev]
+  # Commande pour lancer Eleventy en mode --serve
+  command = "npx @11ty/eleventy --serve"
+  # Dossier à servir localement (correspond au 'publish')
+  targetPort = 8080 # Le port sur lequel Eleventy tourne
+  port = 8888 # Le port sur lequel 'netlify dev' sera accessible
